@@ -14,6 +14,7 @@ const getFragmentFromString = (line, tagName, classNameElement) => {
   return fragment;
 };
 
+
 const renderScreen = (element) => {
   sectionMain.innerHTML = ``;
   sectionMain.appendChild(element);
@@ -24,4 +25,11 @@ const getRandomNumber = () => {
   return Math.round(Math.random() * 2);
 };
 
-export {getFragmentFromString, renderScreen, getRandomNumber};
+
+const getPointsScored = (answers, amountNotes) => {
+  let scored = 0;
+
+  return scored;
+};
+
+export {getFragmentFromString, renderScreen, getRandomNumber, getPointsScored};

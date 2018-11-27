@@ -1,14 +1,14 @@
 let sectionMain = document.querySelector(`section.main`);
 
 
-const getFragmentFromString = (line, tagName, classNameElement) => {
+const getFragmentFromString = (descriptionScreen) => {
   const fragment = document.createDocumentFragment();
-  let element = document.createElement(tagName);
-  let classNameArray = classNameElement.split(` `);
+  let element = document.createElement(descriptionScreen.tagName);
+  let classNameArray = descriptionScreen.classNameElement.split(` `);
   classNameArray.forEach((it) => {
     element.classList.add(it);
   });
-  element.innerHTML = line;
+  element.innerHTML = descriptionScreen.screenLine;
   fragment.appendChild(element);
 
   return fragment;
@@ -26,10 +26,4 @@ const getRandomNumber = () => {
 };
 
 
-const getPointsScored = (answers, amountNotes) => {
-  let scored = 0;
-
-  return scored;
-};
-
-export {getFragmentFromString, renderScreen, getRandomNumber, getPointsScored};
+export {getFragmentFromString, renderScreen, getRandomNumber};

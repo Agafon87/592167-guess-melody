@@ -1,18 +1,19 @@
 let sectionMain = document.querySelector(`section.main`);
 
 
-const getFragmentFromString = (line, tagName, classNameElement) => {
+const getFragmentFromString = (descriptionScreen) => {
   const fragment = document.createDocumentFragment();
-  let element = document.createElement(tagName);
-  let classNameArray = classNameElement.split(` `);
+  let element = document.createElement(descriptionScreen.tagName);
+  let classNameArray = descriptionScreen.classNameElement.split(` `);
   classNameArray.forEach((it) => {
     element.classList.add(it);
   });
-  element.innerHTML = line;
+  element.innerHTML = descriptionScreen.screenLine;
   fragment.appendChild(element);
 
   return fragment;
 };
+
 
 const renderScreen = (element) => {
   sectionMain.innerHTML = ``;
@@ -23,5 +24,6 @@ const renderScreen = (element) => {
 const getRandomNumber = () => {
   return Math.round(Math.random() * 2);
 };
+
 
 export {getFragmentFromString, renderScreen, getRandomNumber};

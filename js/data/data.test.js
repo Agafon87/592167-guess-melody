@@ -1,5 +1,5 @@
 import {assert} from 'chai';
-import {getPointsScored, outputResult, changeLevel, INITIAL_GAME} from './game.js';
+import {getPointsScored, outputResult, changeLevel, INITIAL_GAME} from '../data/data.js';
 
 const playerScored10Points = [
   {answer: true, time: 30},

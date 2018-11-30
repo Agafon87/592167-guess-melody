@@ -1,10 +1,10 @@
-import {getFragmentFromString, renderScreen, renderElement} from './util.js';
-import {getWelcomeScreen} from './welcome-screen.js';
-import {getResultSuccessScreen} from './result-success-screen.js';
-import {INITIAL_GAME} from './data/game.js';
-import {header} from './header.js';
-import {questionList} from './data/game.js';
-import {getFailTriesScreen} from './fail-tries-screen.js';
+import {getFragmentFromString, renderScreen, renderElement} from '../util.js';
+import {getWelcomeScreen} from '../welcome/welcome-screen.js';
+import {getResultSuccessScreen} from '../view/result-success-screen.js';
+// import {INITIAL_GAME} from '../data/data.js';
+import {header} from '../view/header.js';
+import {questionList} from '../data/data.js';
+import {getFailTriesScreen} from '../view/fail-tries-screen.js';
 
 
 const questionsBlock = (levelDescription) => {
@@ -13,7 +13,9 @@ const questionsBlock = (levelDescription) => {
     <div class="track">
       <button class="track__button track__button--play" type="button"></button>
       <div class="track__status">
-        <audio></audio>
+        <audio>
+          <source src="${levelDescription.answers.firstSound.src}" type="audio/mpeg">
+        </audio>
       </div>
       <div class="game__answer">
         <input class="game__input visually-hidden" type="checkbox" name="answer" value="answer-1" id="answer-1">
@@ -24,7 +26,9 @@ const questionsBlock = (levelDescription) => {
     <div class="track">
       <button class="track__button track__button--play" type="button"></button>
       <div class="track__status">
-        <audio></audio>
+        <audio>
+          <source src="${levelDescription.answers.secondSound.src}" type="audio/mpeg">
+        </audio>
       </div>
       <div class="game__answer">
         <input class="game__input visually-hidden" type="checkbox" name="answer" value="answer-1" id="answer-2">
@@ -33,9 +37,11 @@ const questionsBlock = (levelDescription) => {
     </div>
 
     <div class="track">
-      <button class="track__button track__button--pause" type="button"></button>
+    <button class="track__button track__button--play" type="button"></button>
       <div class="track__status">
-        <audio></audio>
+        <audio>
+        <source src="${levelDescription.answers.thirdSound.src}" type="audio/mpeg">
+        </audio>
       </div>
       <div class="game__answer">
         <input class="game__input visually-hidden" type="checkbox" name="answer" value="answer-1" id="answer-3">
@@ -46,7 +52,9 @@ const questionsBlock = (levelDescription) => {
     <div class="track">
       <button class="track__button track__button--play" type="button"></button>
       <div class="track__status">
-        <audio></audio>
+        <audio>
+        <source src="${levelDescription.answers.fourthSound.src}" type="audio/mpeg">
+        </audio>
       </div>
       <div class="game__answer">
         <input class="game__input visually-hidden" type="checkbox" name="answer" value="answer-1" id="answer-4">
@@ -66,10 +74,27 @@ const renderQuestionBlock = (newGame) => {
 
   const gameSubmit = document.querySelector(`.game__submit`);
   const answerCheckbox = Array.from(document.querySelectorAll(`input[name="answer"]`));
+  const trackButton = Array.from(document.querySelectorAll(`.track__button`));
   let answerCheckboxChecked = false;
 
   // Блокируем кнопку отправки, пока не будет выбран хотя бы один вариант
   gameSubmit.disabled = true;
+
+  // Обработчик события нажатия на иконку воспроизведения мелодии
+  for (let it of trackButton) {
+    it.addEventListener(`click`, () => {
+      const audio = it.nextElementSibling.children[0];
+      if (it.classList.contains(`track__button--play`)) {
+        it.classList.remove(`track__button--play`);
+        it.classList.add(`track__button--pause`);
+        audio.play();
+      } else {
+        it.classList.remove(`track__button--pause`);
+        it.classList.add(`track__button--play`);
+        audio.pause();
+      }
+    });
+  }
 
   // Навешиваем обработчик выбора жанра.
   const onClickAnswerCheckbox = () => {
@@ -110,6 +135,7 @@ const renderQuestionBlock = (newGame) => {
       }
     }
 
+
     newGame.level = newGame.level + 1;
     if (newGame.level < 10) {
       renderQuestionBlock(newGame);
@@ -121,8 +147,8 @@ const renderQuestionBlock = (newGame) => {
 
 
 // Функция возвращающая экран выбора жанра композиции
-const getGameGenreScreen = () => {
-  const newGame = Object.assign({}, INITIAL_GAME);
+const getGameGenreScreen = (newGame) => {
+  // const newGame = Object.assign({}, INITIAL_GAME);
   const gameGenreScreen = {tagName: `section`, classNameElement: `game game--genre`, screenLine: `<section class="game__screen"></section>`};
   const gameGenreScreenFragment = getFragmentFromString(gameGenreScreen);
   const headerFragment = getFragmentFromString(header);

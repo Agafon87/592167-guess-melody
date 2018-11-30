@@ -1,5 +1,6 @@
 import {getFragmentFromString, renderScreen} from '../util.js';
-import {getGameGenreScreen} from '../view/game-genre-screen.js';
+// import {getGameGenreScreen} from '../view/game-genre-screen.js';
+// import {getGameArtistScreen} from '../view/game-artist-screen.js';
 import {Screens} from '../view/screens.js';
 import {newGame} from '../game/game.js';
 
@@ -9,8 +10,10 @@ const getWelcomeScreen = () => {
   renderScreen(welcomeScreenFragment);
   const welcomeButton = document.querySelector(`.welcome__button`);
   welcomeButton.addEventListener(`click`, () => {
-    const game = newGame();
-    getGameGenreScreen(game);
+    newGame();
+    // const game = newGame();
+    // getGameGenreScreen(game);
+    // getGameArtistScreen();
   });
 };
 

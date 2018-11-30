@@ -1,20 +1,15 @@
-import {getFragmentFromString, renderScreen, renderElement} from '../util.js';
-import {getWelcomeScreen} from '../welcome/welcome-screen.js';
-import {getResultSuccessScreen} from '../view/result-success-screen.js';
-// import {INITIAL_GAME} from '../data/data.js';
-import {header} from '../view/header.js';
-import {questionList} from '../data/data.js';
-import {getFailTriesScreen} from '../view/fail-tries-screen.js';
+import {getFragmentFromString, renderElement} from '../util.js';
+import {nextLevel} from '../game/game.js';
 
 
-const questionsBlock = (levelDescription) => {
-  return `<h2 class="game__title">${levelDescription.question}</h2>
+const questionsBlock = (roundDescription) => {
+  return `<h2 class="game__title">${roundDescription.question}</h2>
   <form class="game__tracks">
     <div class="track">
       <button class="track__button track__button--play" type="button"></button>
       <div class="track__status">
         <audio>
-          <source src="${levelDescription.answers.firstSound.src}" type="audio/mpeg">
+          <source src="${roundDescription.answers[0].src}" type="audio/mpeg">
         </audio>
       </div>
       <div class="game__answer">
@@ -27,7 +22,7 @@ const questionsBlock = (levelDescription) => {
       <button class="track__button track__button--play" type="button"></button>
       <div class="track__status">
         <audio>
-          <source src="${levelDescription.answers.secondSound.src}" type="audio/mpeg">
+          <source src="${roundDescription.answers[1].src}" type="audio/mpeg">
         </audio>
       </div>
       <div class="game__answer">
@@ -40,7 +35,7 @@ const questionsBlock = (levelDescription) => {
     <button class="track__button track__button--play" type="button"></button>
       <div class="track__status">
         <audio>
-        <source src="${levelDescription.answers.thirdSound.src}" type="audio/mpeg">
+        <source src="${roundDescription.answers[2].src}" type="audio/mpeg">
         </audio>
       </div>
       <div class="game__answer">
@@ -53,7 +48,7 @@ const questionsBlock = (levelDescription) => {
       <button class="track__button track__button--play" type="button"></button>
       <div class="track__status">
         <audio>
-        <source src="${levelDescription.answers.fourthSound.src}" type="audio/mpeg">
+        <source src="${roundDescription.answers[3].src}" type="audio/mpeg">
         </audio>
       </div>
       <div class="game__answer">
@@ -67,10 +62,11 @@ const questionsBlock = (levelDescription) => {
 };
 
 
-const renderQuestionBlock = (newGame) => {
+export const renderQuestionBlockForGenre = (round, currentGame) => {
   const questionSection = document.querySelector(`.game__screen`);
   const gameMistakes = document.querySelector(`.game__mistakes`);
-  renderElement(questionSection, questionsBlock(questionList[`level-${newGame.level}`]));
+  // renderElement(questionSection, questionsBlock(questionList[`level-${round.level}`]));
+  renderElement(questionSection, questionsBlock(round));
 
   const gameSubmit = document.querySelector(`.game__submit`);
   const answerCheckbox = Array.from(document.querySelectorAll(`input[name="answer"]`));
@@ -122,49 +118,10 @@ const renderQuestionBlock = (newGame) => {
   // Обработчик события нажатия кнопки отправить
   gameSubmit.addEventListener(`click`, (evt) => {
     evt.preventDefault();
-
     if (answerCheckbox[0].checked) {
       const mistake = getFragmentFromString({tagName: `div`, classNameElement: `wrong`, screenLine: ``});
       gameMistakes.appendChild(mistake);
-      newGame.lives = newGame.lives - 1;
-      if (newGame.lives === 0) {
-        setTimeout(() => {
-          getFailTriesScreen();
-        }, 500);
-        return;
-      }
     }
-
-
-    newGame.level = newGame.level + 1;
-    if (newGame.level < 10) {
-      renderQuestionBlock(newGame);
-    } else {
-      getResultSuccessScreen();
-    }
+    nextLevel(currentGame);
   });
 };
-
-
-// Функция возвращающая экран выбора жанра композиции
-const getGameGenreScreen = (newGame) => {
-  // const newGame = Object.assign({}, INITIAL_GAME);
-  const gameGenreScreen = {tagName: `section`, classNameElement: `game game--genre`, screenLine: `<section class="game__screen"></section>`};
-  const gameGenreScreenFragment = getFragmentFromString(gameGenreScreen);
-  const headerFragment = getFragmentFromString(header);
-  gameGenreScreenFragment.firstChild.insertBefore(headerFragment, gameGenreScreenFragment.firstChild.firstChild);
-  renderScreen(gameGenreScreenFragment);
-  renderQuestionBlock(newGame);
-
-  const gameLogo = document.querySelector(`.game__logo`);
-
-  // Обработчик события клика по иконке
-  gameLogo.addEventListener(`click`, () => {
-    getWelcomeScreen();
-  });
-
-
-};
-
-
-export {getGameGenreScreen};

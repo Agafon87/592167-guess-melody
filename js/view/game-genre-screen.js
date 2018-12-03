@@ -1,14 +1,15 @@
 import {getFragmentFromString, renderElement} from '../util.js';
 import {nextLevel} from '../game/game.js';
+import {statistic} from '../data/data.js';
 
 
 const questionsBlock = (roundDescription) => {
   return `<h2 class="game__title">${roundDescription.question}</h2>
   <form class="game__tracks">
     <div class="track">
-      <button class="track__button track__button--play" type="button"></button>
+      <button class="track__button track__button--pause" type="button"></button>
       <div class="track__status">
-        <audio>
+        <audio autoplay>
           <source src="${roundDescription.answers[0].src}" type="audio/mpeg">
         </audio>
       </div>
@@ -79,6 +80,12 @@ export const renderQuestionBlockForGenre = (round, currentGame) => {
   // Обработчик события нажатия на иконку воспроизведения мелодии
   for (let it of trackButton) {
     it.addEventListener(`click`, () => {
+
+      const elem = trackButton.find((element) => {
+        return element.classList.contains(`track__button--pause`);
+      });
+      elem.click();
+
       const audio = it.nextElementSibling.children[0];
       if (it.classList.contains(`track__button--play`)) {
         it.classList.remove(`track__button--play`);
@@ -121,7 +128,15 @@ export const renderQuestionBlockForGenre = (round, currentGame) => {
     if (answerCheckbox[0].checked) {
       const mistake = getFragmentFromString({tagName: `div`, classNameElement: `wrong`, screenLine: ``});
       gameMistakes.appendChild(mistake);
+      currentGame.lives = currentGame.lives - 1;
     }
+
+    const roundValue = {
+      answer: true,
+      time: 30
+    };
+    statistic.push(roundValue);
+
     nextLevel(currentGame);
   });
 };

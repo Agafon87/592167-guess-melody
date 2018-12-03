@@ -1,11 +1,12 @@
 import {renderElement} from '../util.js';
 import {nextLevel} from '../game/game.js';
+import {statistic} from '../data/data.js';
 
 const questionsBlock = (roundDescription) => {
   return `<h2 class="game__title">${roundDescription.question}</h2>
   <div class="game__track">
-    <button class="track__button track__button--play" type="button"></button>
-    <audio>
+    <button class="track__button track__button--pause" type="button"></button>
+    <audio autoplay>
       <source src="${roundDescription.src}" type="audio/mpeg">
     </audio>
   </div>
@@ -40,7 +41,6 @@ const questionsBlock = (roundDescription) => {
 
 export const renderQuestionBlockForArtist = (round, currentGame) => {
   const questionSection = document.querySelector(`.game__screen`);
-  // const gameMistakes = document.querySelector(`.game__mistakes`);
   renderElement(questionSection, questionsBlock(round));
 
   const trackButton = document.querySelector(`.track__button`);
@@ -60,96 +60,15 @@ export const renderQuestionBlockForArtist = (round, currentGame) => {
   const answerRadio = document.querySelectorAll(`input[type="radio"]`);
   for (let it of answerRadio) {
     it.addEventListener(`click`, () => {
+
+      // Сохраняем статистику
+      const roundValue = {
+        answer: true,
+        time: 30
+      };
+      statistic.push(roundValue);
+
       nextLevel(currentGame);
     });
   }
 };
-
-// const gameSubmit = document.querySelector(`.game__submit`);
-// const answerCheckbox = Array.from(document.querySelectorAll(`input[name="answer"]`));
-// const trackButton = Array.from(document.querySelectorAll(`.track__button`));
-// let answerCheckboxChecked = false;
-
-// Блокируем кнопку отправки, пока не будет выбран хотя бы один вариант
-// gameSubmit.disabled = true;
-
-// Обработчик события нажатия на иконку воспроизведения мелодии
-// for (let it of trackButton) {
-//   it.addEventListener(`click`, () => {
-//     const audio = it.nextElementSibling.children[0];
-//     if (it.classList.contains(`track__button--play`)) {
-//       it.classList.remove(`track__button--play`);
-//       it.classList.add(`track__button--pause`);
-//       audio.play();
-//     } else {
-//       it.classList.remove(`track__button--pause`);
-//       it.classList.add(`track__button--play`);
-//       audio.pause();
-//     }
-//   });
-// }
-
-// Навешиваем обработчик выбора жанра.
-// const onClickAnswerCheckbox = () => {
-//   answerCheckboxChecked = false;
-//   for (let it of answerCheckbox) {
-//     if (it.checked) {
-//       answerCheckboxChecked = true;
-//       break;
-//     }
-//   }
-
-//   if (gameSubmit.disabled === true && answerCheckboxChecked === true) {
-//     gameSubmit.disabled = false;
-//   } else if (gameSubmit.disabled === false && answerCheckboxChecked === true) {
-//     gameSubmit.disabled = false;
-//   } else {
-//     gameSubmit.disabled = true;
-//   }
-// };
-
-// for (let it of answerCheckbox) {
-//   it.addEventListener(`change`, onClickAnswerCheckbox);
-// }
-
-// Обработчик события нажатия кнопки отправить
-// gameSubmit.addEventListener(`click`, (evt) => {
-//   evt.preventDefault();
-//   if (answerCheckbox[0].checked) {
-//     const mistake = getFragmentFromString({tagName: `div`, classNameElement: `wrong`, screenLine: ``});
-//     gameMistakes.appendChild(mistake);
-//   }
-//   nextLevel(currentGame);
-// });
-
-
-// const getGameArtistScreen = () => {
-//   const gameArtistScreenFragment = getFragmentFromString(Screens.gameArtistScreen);
-//   renderScreen(gameArtistScreenFragment);
-
-//   const gameLogo = document.querySelector(`.game__logo`);
-//   const answerRadio = document.querySelectorAll(`input[type="radio"]`);
-
-//   for (let it of answerRadio) {
-//     it.addEventListener(`click`, () => {
-//       const number = getRandomNumber();
-//       switch (number) {
-//         case 0:
-//           getResultSuccessScreen();
-//           break;
-//         case 1:
-//           getFailTimeScreen();
-//           break;
-//         case 2:
-//           getFailTriesScreen();
-//           break;
-//       }
-//     });
-//   }
-
-//   gameLogo.addEventListener(`click`, () => {
-//     getWelcomeScreen();
-//   });
-// };
-
-// export {getGameArtistScreen};

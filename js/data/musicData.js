@@ -1,243 +1,244 @@
-export default [{
-  "type": `genre`,
-  "question": `Выберите все кантри песни`,
-  "genre": `country`,
-  "answers": [{
-    "src": `https://freemusicarchive.org/music/listen/0f11d8b1ec99976a510d567c4ba562130b7680d4`,
-    "genre": `pop`
+export default [
+  {
+    "type": `genre`,
+    "question": `Выберите все фолковые песни`,
+    "genre": `folk`,
+    "answers": [{
+      "src": `https://freemusicarchive.org/music/download/88e2e95f4f9e02b922c10901484220d6c31820ed`,
+      "genre": `pop`
+    }, {
+      "src": `https://freemusicarchive.org/music/listen/ba3a0ae10f9582f8c8a8be7746d9315336818e85`,
+      "genre": `folk`
+    }, {
+      "src": `https://freemusicarchive.org/music/listen/77aa0f15c719852c6b7b082f37ca41ca167e76f5`,
+      "genre": `rock`
+    }, {
+      "src": `https://freemusicarchive.org/music/listen/506f1c4b1a6c8d5f67b20b47f854fef8c54c7fc8`,
+      "genre": `jazz`
+    }]
   }, {
-    "src": `https://freemusicarchive.org/music/listen/af9c029a2c4a5e11e11d2ebb76183c168bfb259d`,
-    "genre": `country`
+    "type": `artist`,
+    "question": `Кто исполняет эту песню?`,
+    "src": `https://freemusicarchive.org/music/listen/13f0488a374e23d0804189d10720abe82e89cc90`,
+    "answers": [{
+      "image": {
+        "url": `https://freemusicarchive.org/file/images/artists/Kevin_MacLeod_-_20110715150335323.png?width=300&height=300`,
+        "width": 300,
+        "height": 300
+      },
+      "title": `Kevin MacLeod`,
+      "isCorrect": false
+    }, {
+      "image": {
+        "url": `https://freemusicarchive.org/file/images/artists/Lobo_Loco_-_20160509152923470.jpg?width=300&height=300`,
+        "width": 300,
+        "height": 300
+      },
+      "title": `Loco Loco`,
+      "isCorrect": true
+    }, {
+      "image": {
+        "url": `https://freemusicarchive.org/file/images/artists/Waylon_Thornton_-_2012061793125465.jpg?width=300&height=300`,
+        "width": 300,
+        "height": 300
+      },
+      "title": `Waylon Thornton`,
+      "isCorrect": false
+    }]
   }, {
-    "src": `https://freemusicarchive.org/music/listen/5ec03c4fd57bdbebeaa003706f907139d00a2a2a`,
-    "genre": `jazz`
+    "type": `artist`,
+    "question": `Кто исполняет эту песню?`,
+    "src": `https://freemusicarchive.org/music/listen/076af12ab9742fa0c47d0aeb03c690c783726f51`,
+    "answers": [{
+      "image": {
+        "url": `https://freemusicarchive.org/file/images/artists/Black_Ant_-_20100815203310658.png?width=300&height=300`,
+        "width": 300,
+        "height": 300
+      },
+      "title": `Black Ant`,
+      "isCorrect": true
+    }, {
+      "image": {
+        "url": `https://freemusicarchive.org/file/images/artists/Comfort_Fit_-_20091216190305442.jpg?width=300&height=300`,
+        "width": 300,
+        "height": 300
+      },
+      "title": `Comfort Fit`,
+      "isCorrect": false
+    }, {
+      "image": {
+        "url": `https://freemusicarchive.org/file/images/artists/Jason_Shaw_-_20131120155444083.jpg?width=300&height=300`,
+        "width": 300,
+        "height": 300
+      },
+      "title": `Jason Shaw`,
+      "isCorrect": false
+    }]
   }, {
-    "src": ``,
-    "genre": `pop`
-  }]
-}, {
-  "type": `genre`,
-  "question": `Выберите все роковые песни`,
-  "genre": `rock`,
-  "answers": [{
-    "src": `https://freemusicarchive.org/music/listen/4b53414530fb6e2e2a933fc98fc68f731149c631`,
-    "genre": `blues`
+    "type": `artist`,
+    "question": `Кто исполняет эту песню?`,
+    "src": `https://freemusicarchive.org/music/listen/b3e13a8c1b3fdbe3a05994cd6688213fbd198cec`,
+    "answers": [{
+      "image": {
+        "url": `https://freemusicarchive.org/file/images/artists/Quantum_Jazz_-_20120509113401114.jpg?width=300&height=300`,
+        "width": 300,
+        "height": 300
+      },
+      "title": `Quantum Jazz`,
+      "isCorrect": true
+    }, {
+      "image": {
+        "url": `https://freemusicarchive.org/file/images/artists/Paper_Navy_-_20120226181728099.jpg?width=300&height=300`,
+        "width": 300,
+        "height": 300
+      },
+      "title": `Paper Navy`,
+      "isCorrect": false
+    }, {
+      "image": {
+        "url": `https://freemusicarchive.org/file/images/artists/Broke_For_Free_-_2013011621055318.jpg?width=300&height=300`,
+        "width": 300,
+        "height": 300
+      },
+      "title": `Broke For Free`,
+      "isCorrect": false
+    }]
   }, {
-    "src": `https://freemusicarchive.org/music/listen/1a6bd3e779ee742544d3e3e00c1788d75bb4e308`,
-    "genre": `hip-hop`
+    "type": `genre`,
+    "question": `Выберите все блюзовые песни`,
+    "genre": `blues`,
+    "answers": [{
+      "src": `https://freemusicarchive.org/music/listen/63a243214c4b15833b31ff9b23209ff8f5da29da`,
+      "genre": `blues`
+    }, {
+      "src": `https://freemusicarchive.org/music/listen/f9195297452ff352e45a318df0c7d02cc43c8f26`,
+      "genre": `electronic`
+    }, {
+      "src": `https://freemusicarchive.org/music/listen/77aa0f15c719852c6b7b082f37ca41ca167e76f5`,
+      "genre": `rock`
+    }, {
+      "src": `https://freemusicarchive.org/music/listen/2e34e2182bcfa498bb157dbeed5095f090307c0b`,
+      "genre": `rock`
+    }]
   }, {
-    "src": `https://freemusicarchive.org/music/listen/755b1ba9e43261ec179c72ac4d064e772bc64699`,
-    "genre": `rock`
+    "type": `artist`,
+    "question": `Кто исполняет эту песню?`,
+    "src": `https://freemusicarchive.org/music/listen/f9195297452ff352e45a318df0c7d02cc43c8f26`,
+    "answers": [{
+      "image": {
+        "url": `https://freemusicarchive.org/file/images/artists/Lobo_Loco_-_20160509152923470.jpg?width=300&height=300`,
+        "width": 300,
+        "height": 300
+      },
+      "title": `Loco Loco`,
+      "isCorrect": false
+    }, {
+      "image": {
+        "url": `https://freemusicarchive.org/file/images/artists/Tours_-_20120822132441990.png?width=300&height=300`,
+        "width": 300,
+        "height": 300
+      },
+      "title": `Tours`,
+      "isCorrect": true
+    }, {
+      "image": {
+        "url": `https://freemusicarchive.org/file/images/artists/Stephan_Siebert_-_20160712113333691.jpg?width=300&height=300`,
+        "width": 300,
+        "height": 300
+      },
+      "title": `Stephan Siebert`,
+      "isCorrect": false
+    }]
   }, {
-    "src": ``,
-    "genre": `pop`
-  }]
-}, {
-  "type": `genre`,
-  "question": `Выберите все фолковые песни`,
-  "genre": `folk`,
-  "answers": [{
-    "src": `https://freemusicarchive.org/music/listen/74e93c1669c0ccde5aa59c131811bc93968af348`,
-    "genre": `rock`
+    "type": `artist`,
+    "question": `Кто исполняет эту песню?`,
+    "src": `https://freemusicarchive.org/music/listen/63a243214c4b15833b31ff9b23209ff8f5da29da`,
+    "answers": [{
+      "image": {
+        "url": `https://freemusicarchive.org/file/images/artists/Kevin_MacLeod_-_20110715150335323.png?width=300&height=300`,
+        "width": 300,
+        "height": 300
+      },
+      "title": `Kevin MacLeod`,
+      "isCorrect": true
+    }, {
+      "image": {
+        "url": `https://freemusicarchive.org/file/images/artists/Jahzzar_-_20160323124322227.jpg?width=300&height=300`,
+        "width": 300,
+        "height": 300
+      },
+      "title": `Jahzzar`,
+      "isCorrect": false
+    }, {
+      "image": {
+        "url": `https://freemusicarchive.org/file/images/artists/Stephan_Siebert_-_20160712113333691.jpg?width=300&height=300`,
+        "width": 300,
+        "height": 300
+      },
+      "title": `Stephan Siebert`,
+      "isCorrect": false
+    }]
   }, {
-    "src": `https://freemusicarchive.org/music/listen/b96e48cb397bcc790ef1adf2d69110bbaf18c605`,
-    "genre": `classical`
+    "type": `genre`,
+    "question": `Выберите классику`,
+    "genre": `classical`,
+    "answers": [{
+      "src": `https://freemusicarchive.org/music/listen/f9b9f6bdf69a5617f45b73e3202757cf3af83043`,
+      "genre": `folk`
+    }, {
+      "src": `https://freemusicarchive.org/music/listen/63a243214c4b15833b31ff9b23209ff8f5da29da`,
+      "genre": `blues`
+    }, {
+      "src": `https://freemusicarchive.org/music/listen/13f0488a374e23d0804189d10720abe82e89cc90`,
+      "genre": `classical`
+    }, {
+      "src": `https://freemusicarchive.org/music/listen/b3e13a8c1b3fdbe3a05994cd6688213fbd198cec`,
+      "genre": `jazz`
+    }]
   }, {
-    "src": `https://freemusicarchive.org/music/listen/9e5b42d181c0386f5af8182835d7d1784e465d6c`,
-    "genre": `folk`
+    "type": `genre`,
+    "question": `Выберите все фолковые песни`,
+    "genre": `folk`,
+    "answers": [{
+      "src": `https://freemusicarchive.org/music/listen/63a243214c4b15833b31ff9b23209ff8f5da29da`,
+      "genre": `blues`
+    }, {
+      "src": `https://freemusicarchive.org/music/listen/77aa0f15c719852c6b7b082f37ca41ca167e76f5`,
+      "genre": `rock`
+    }, {
+      "src": `https://freemusicarchive.org/music/listen/caa83a7154f9a19c715d4069d1bc08c03986c939`,
+      "genre": `folk`
+    }, {
+      "src": `https://freemusicarchive.org/music/listen/2e34e2182bcfa498bb157dbeed5095f090307c0b`,
+      "genre": `rock`
+    }]
   }, {
-    "src": `https://freemusicarchive.org/music/listen/755b1ba9e43261ec179c72ac4d064e772bc64699`,
-    "genre": `rock`
-  }]
-}, {
-  "type": `artist`,
-  "question": `Кто исполняет эту песню?`,
-  "src": ``,
-  "answers": [{
-    "image": {
-      "url": `https://freemusicarchive.org/file/images/artists/Scott_Holmes_-_20161110203535496.jpg?width=300&height=300`,
-      "width": 300,
-      "height": 300
-    },
-    "title": `Scott Holmes`,
-    "isCorrect": true
-  }, {
-    "image": {
-      "url": `https://freemusicarchive.org/file/images/artists/Jahzzar_-_20160323124322227.jpg?width=300&height=300`,
-      "width": 300,
-      "height": 300
-    },
-    "title": `Jahzzar`,
-    "isCorrect": false
-  }, {
-    "image": {
-      "url": `https://freemusicarchive.org/file/images/artists/Waylon_Thornton_-_2012061793125465.jpg?width=300&height=300`,
-      "width": 300,
-      "height": 300
-    },
-    "title": `Waylon Thornton`,
-    "isCorrect": false
-  }]
-}, {
-  "type": `genre`,
-  "question": `Выберите все роковые песни`,
-  "genre": `rock`,
-  "answers": [{
-    "src": `https://freemusicarchive.org/music/listen/0f11d8b1ec99976a510d567c4ba562130b7680d4`,
-    "genre": `pop`
-  }, {
-    "src": ``,
-    "genre": `pop`
-  }, {
-    "src": `https://freemusicarchive.org/music/listen/755b1ba9e43261ec179c72ac4d064e772bc64699`,
-    "genre": `rock`
-  }, {
-    "src": `https://freemusicarchive.org/music/listen/4b53414530fb6e2e2a933fc98fc68f731149c631`,
-    "genre": `blues`
-  }]
-}, {
-  "type": `artist`,
-  "question": `Кто исполняет эту песню?`,
-  "src": `https://freemusicarchive.org/music/listen/9e5b42d181c0386f5af8182835d7d1784e465d6c`,
-  "answers": [{
-    "image": {
-      "url": `https://freemusicarchive.org/file/images/artists/Michael_Chapman__The_Woodpiles_-_2012081323009192.jpg?width=290&height=290`,
-      "width": 300,
-      "height": 300
-    },
-    "title": `Michael Chapman & The Woodpiles`,
-    "isCorrect": true
-  }, {
-    "image": {
-      "url": `https://freemusicarchive.org/file/images/artists/Broke_For_Free_-_2013011621055318.jpg?width=300&height=300`,
-      "width": 300,
-      "height": 300
-    },
-    "title": `Broke For Free`,
-    "isCorrect": false
-  }, {
-    "image": {
-      "url": `https://freemusicarchive.org/file/images/artists/Jason_Shaw_-_20131120155444083.jpg?width=300&height=300`,
-      "width": 300,
-      "height": 300
-    },
-    "title": `Jason Shaw`,
-    "isCorrect": false
-  }]
-}, {
-  "type": `artist`,
-  "question": `Кто исполняет эту песню?`,
-  "src": `https://freemusicarchive.org/music/listen/9e5b42d181c0386f5af8182835d7d1784e465d6c`,
-  "answers": [{
-    "image": {
-      "url": `https://freemusicarchive.org/file/images/artists/Michael_Chapman__The_Woodpiles_-_2012081323009192.jpg?width=290&height=290`,
-      "width": 300,
-      "height": 300
-    },
-    "title": `Michael Chapman & The Woodpiles`,
-    "isCorrect": true
-  }, {
-    "image": {
-      "url": `https://freemusicarchive.org/file/images/artists/Black_Ant_-_20100815203310658.png?width=300&height=300`,
-      "width": 300,
-      "height": 300
-    },
-    "title": `Black Ant`,
-    "isCorrect": false
-  }, {
-    "image": {
-      "url": `https://freemusicarchive.org/file/images/artists/Jason_Shaw_-_20131120155444083.jpg?width=300&height=300`,
-      "width": 300,
-      "height": 300
-    },
-    "title": `Jason Shaw`,
-    "isCorrect": false
-  }]
-}, {
-  "type": `artist`,
-  "question": `Кто исполняет эту песню?`,
-  "src": `https://freemusicarchive.org/music/listen/4b53414530fb6e2e2a933fc98fc68f731149c631`,
-  "answers": [{
-    "image": {
-      "url": `https://freemusicarchive.org/file/images/artists/Kevin_MacLeod_-_20110715150335323.png?width=300&height=300`,
-      "width": 300,
-      "height": 300
-    },
-    "title": `Kevin MacLeod`,
-    "isCorrect": true
-  }, {
-    "image": {
-      "url": `https://freemusicarchive.org/file/images/artists/Black_Math_-_20100122151057551.jpg?width=300&height=300`,
-      "width": 300,
-      "height": 300
-    },
-    "title": `Black Math`,
-    "isCorrect": false
-  }, {
-    "image": {
-      "url": `https://freemusicarchive.org/file/images/artists/Waylon_Thornton_-_2012061793125465.jpg?width=300&height=300`,
-      "width": 300,
-      "height": 300
-    },
-    "title": `Waylon Thornton`,
-    "isCorrect": false
-  }]
-}, {
-  "type": `artist`,
-  "question": `Кто исполняет эту песню?`,
-  "src": `https://freemusicarchive.org/music/listen/755b1ba9e43261ec179c72ac4d064e772bc64699`,
-  "answers": [{
-    "image": {
-      "url": `https://freemusicarchive.org/file/images/artists/Jahzzar_-_20160323124322227.jpg?width=300&height=300`,
-      "width": 300,
-      "height": 300
-    },
-    "title": `Jahzzar`,
-    "isCorrect": true
-  }, {
-    "image": {
-      "url": `https://freemusicarchive.org/file/images/artists/Michael_Chapman__The_Woodpiles_-_2012081323009192.jpg?width=290&height=290`,
-      "width": 300,
-      "height": 300
-    },
-    "title": `Michael Chapman & The Woodpiles`,
-    "isCorrect": false
-  }, {
-    "image": {
-      "url": `https://freemusicarchive.org/file/images/artists/Stephan_Siebert_-_20160712113333691.jpg?width=300&height=300`,
-      "width": 300,
-      "height": 300
-    },
-    "title": `Stephan Siebert`,
-    "isCorrect": false
-  }]
-}, {
-  "type": `artist`,
-  "question": `Кто исполняет эту песню?`,
-  "src": `https://freemusicarchive.org/music/listen/9e5b42d181c0386f5af8182835d7d1784e465d6c`,
-  "answers": [{
-    "image": {
-      "url": `https://freemusicarchive.org/file/images/artists/Michael_Chapman__The_Woodpiles_-_2012081323009192.jpg?width=290&height=290`,
-      "width": 300,
-      "height": 300
-    },
-    "title": `Michael Chapman & The Woodpiles`,
-    "isCorrect": true
-  }, {
-    "image": {
-      "url": `https://freemusicarchive.org/file/images/artists/Tours_-_20120822132441990.png?width=300&height=300`,
-      "width": 300,
-      "height": 300
-    },
-    "title": `Tours`,
-    "isCorrect": false
-  }, {
-    "image": {
-      "url": `https://freemusicarchive.org/file/images/artists/Jason_Shaw_-_20131120155444083.jpg?width=300&height=300`,
-      "width": 300,
-      "height": 300
-    },
-    "title": `Jason Shaw`,
-    "isCorrect": false
-  }]
-}];
+    "type": `artist`,
+    "question": `Кто исполняет эту песню?`,
+    "src": `https://freemusicarchive.org/music/listen/c95f5cfe8f612df4e3eace712b177b5759dfe02f`,
+    "answers": [{
+      "image": {
+        "url": `https://freemusicarchive.org/file/images/artists/Waylon_Thornton_-_2012061793125465.jpg?width=300&height=300`,
+        "width": 300,
+        "height": 300
+      },
+      "title": `Waylon Thornton`,
+      "isCorrect": true
+    }, {
+      "image": {
+        "url": `https://freemusicarchive.org/file/images/artists/Black_Ant_-_20100815203310658.png?width=300&height=300`,
+        "width": 300,
+        "height": 300
+      },
+      "title": `Black Ant`,
+      "isCorrect": false
+    }, {
+      "image": {
+        "url": `https://freemusicarchive.org/file/images/artists/Jahzzar_-_20160323124322227.jpg?width=300&height=300`,
+        "width": 300,
+        "height": 300
+      },
+      "title": `Jahzzar`,
+      "isCorrect": false
+    }]
+  }];

@@ -3,15 +3,21 @@ import {getWelcomeScreen} from '../welcome/welcome-screen.js';
 import {header} from '../view/header.js';
 import {renderQuestionBlockForGenre} from '../view/game-genre-screen.js';
 import {renderQuestionBlockForArtist} from '../view/game-artist-screen.js';
-import {INITIAL_GAME} from '../data/data.js';
+import {getFailTriesScreen} from '../view/fail-tries-screen.js';
+import {INITIAL_GAME, statistic} from '../data/data.js';
 import {getResultSuccessScreen} from '../view/result-success-screen.js';
 import musicData from '../data/musicData.js';
 
 
 const nextLevel = (game) => {
+  if (game.lives === 0) {
+    setTimeout(getFailTriesScreen, 250);
+    return;
+  }
   game.level = game.level + 1;
-  if (game.level === 10) {
-    getResultSuccessScreen();
+  if (game.level >= 10) {
+    getResultSuccessScreen(game, statistic);
+    return;
   }
   renderGameScreen(game);
 };
@@ -27,6 +33,7 @@ const renderGameScreen = (currentGame) => {
 
 export const newGame = () => {
   const currentGame = Object.assign({}, INITIAL_GAME);
+  statistic.splice(0, statistic.length);
 
 
   const gameGenreScreen = {tagName: `section`, classNameElement: `game game--genre`, screenLine: `<section class="game__screen"></section>`};

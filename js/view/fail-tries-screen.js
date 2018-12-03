@@ -1,6 +1,6 @@
-import {getFragmentFromString, renderScreen} from './util.js';
-import {getWelcomeScreen} from './welcome-screen.js';
-import {Screens} from './screens.js';
+import {getFragmentFromString, renderScreen} from '../util.js';
+import {getWelcomeScreen} from '../welcome/welcome-screen.js';
+import {Screens} from '../view/screens.js';
 
 
 const getFailTriesScreen = () => {

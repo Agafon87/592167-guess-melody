@@ -1,3 +1,3 @@
-import {getWelcomeScreen} from './welcome-screen.js';
+import {getWelcomeScreen} from './welcome/welcome-screen.js';
 
 getWelcomeScreen();

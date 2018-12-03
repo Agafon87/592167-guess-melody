@@ -1,7 +1,17 @@
 export const INITIAL_GAME = {
   level: 0,
   lives: 3,
-  time: 600
+  time: 300
+};
+
+// export const currentGame = {};
+
+
+export const nextLevel = (game, level) => {
+  const newGame = Object.assign({}, game, {
+    level
+  });
+  return newGame;
 };
 
 export const getPointsScored = (answers) => {
@@ -22,6 +32,14 @@ export const getPointsScored = (answers) => {
   return scored;
 };
 
+// export const amountMistakes = (lives) => {
+//   return (lives >= 0 && lives < 3) ? `, совершив ${3 - lives} ошибки` : ``;
+// };
+
+export const amountMistakes = (lives) => {
+  return `, совершив ${3 - lives} ошибки`;
+};
+
 
 export const outputResult = (resultAnotherPersons, currentGame) => {
   if (currentGame.timeLeft === 0) {
@@ -40,4 +58,20 @@ export const outputResult = (resultAnotherPersons, currentGame) => {
   const succsessRate = Math.round((statistics.length - placeInStatistics) / statistics.length * 100);
 
   return `Вы заняли ${placeInStatistics} место из ${statistics.length} игроков. Это лучше, чем у ${succsessRate}% игроков`;
+};
+
+export const statistic = [];
+
+
+export const countTime = (currentStatistic) => {
+  const timeAllRound = currentStatistic.map((it) => {
+    return it.time;
+  }).reduce((acc, value) => {
+    return acc + value;
+  });
+
+  const minutes = Math.floor(timeAllRound / 60);
+  const second = timeAllRound - (minutes * 60);
+
+  return `${minutes} минуты и ${second} секунды`;
 };

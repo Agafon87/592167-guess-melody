@@ -1,10 +1,10 @@
 export const INITIAL_GAME = {
   level: 0,
   lives: 3,
-  time: 300
+  timeSec: 0,
+  timeMin: 5,
+  offsetValue: 7.75
 };
-
-// export const currentGame = {};
 
 
 export const nextLevel = (game, level) => {
@@ -32,9 +32,6 @@ export const getPointsScored = (answers) => {
   return scored;
 };
 
-// export const amountMistakes = (lives) => {
-//   return (lives >= 0 && lives < 3) ? `, совершив ${3 - lives} ошибки` : ``;
-// };
 
 export const amountMistakes = (lives) => {
   return `, совершив ${3 - lives} ошибки`;

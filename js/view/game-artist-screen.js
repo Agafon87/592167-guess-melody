@@ -1,4 +1,4 @@
-import {renderElement} from '../util.js';
+import {getFragmentFromString, renderElement} from '../util.js';
 import {nextLevel} from '../game/game.js';
 import {statistic} from '../data/data.js';
 
@@ -13,7 +13,7 @@ const questionsBlock = (roundDescription) => {
 
   <form class="game__artist">
     <div class="artist">
-      <input class="artist__input visually-hidden" type="radio" name="answer" value="artist-1" id="answer-1">
+      <input class="artist__input visually-hidden" type="radio" name="answer" value="artist-1" id="answer-1" data-iscorrect="${roundDescription.answers[0].isCorrect}">
       <label class="artist__name" for="answer-1">
         <img class="artist__picture" src="${roundDescription.answers[0].image.url}" alt="${roundDescription.answers[0].title}">
         ${roundDescription.answers[0].title}
@@ -21,7 +21,7 @@ const questionsBlock = (roundDescription) => {
     </div>
 
     <div class="artist">
-      <input class="artist__input visually-hidden" type="radio" name="answer" value="artist-2" id="answer-2">
+      <input class="artist__input visually-hidden" type="radio" name="answer" value="artist-2" id="answer-2" data-iscorrect="${roundDescription.answers[1].isCorrect}">
       <label class="artist__name" for="answer-2">
         <img class="artist__picture" src="${roundDescription.answers[1].image.url}" alt="${roundDescription.answers[1].title}">
         ${roundDescription.answers[1].title}
@@ -29,7 +29,7 @@ const questionsBlock = (roundDescription) => {
     </div>
 
     <div class="artist">
-      <input class="artist__input visually-hidden" type="radio" name="answer" value="artist-3" id="answer-3">
+      <input class="artist__input visually-hidden" type="radio" name="answer" value="artist-3" id="answer-3" data-iscorrect="${roundDescription.answers[2].isCorrect}">
       <label class="artist__name" for="answer-3">
         <img class="artist__picture" src="${roundDescription.answers[2].image.url}" alt="${roundDescription.answers[2].title}">
         ${roundDescription.answers[2].title}
@@ -40,7 +40,13 @@ const questionsBlock = (roundDescription) => {
 
 
 export const renderQuestionBlockForArtist = (round, currentGame) => {
+  const roundStatistic = {
+    answer: true,
+    time: 30
+  };
+
   const questionSection = document.querySelector(`.game__screen`);
+  const gameMistakes = document.querySelector(`.game__mistakes`);
   renderElement(questionSection, questionsBlock(round));
 
   const trackButton = document.querySelector(`.track__button`);
@@ -61,12 +67,15 @@ export const renderQuestionBlockForArtist = (round, currentGame) => {
   for (let it of answerRadio) {
     it.addEventListener(`click`, () => {
 
+      if (it.dataset.iscorrect === `false`) {
+        const mistake = getFragmentFromString({tagName: `div`, classNameElement: `wrong`, screenLine: ``});
+        gameMistakes.appendChild(mistake);
+        currentGame.lives = currentGame.lives - 1;
+        roundStatistic.answer = false;
+      }
+
       // Сохраняем статистику
-      const roundValue = {
-        answer: true,
-        time: 30
-      };
-      statistic.push(roundValue);
+      statistic.push(roundStatistic);
 
       nextLevel(currentGame);
     });

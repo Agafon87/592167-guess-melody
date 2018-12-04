@@ -29,6 +29,3 @@ export const renderElement = (element, questionBlock) => {
 export const getRandomNumber = () => {
   return Math.round(Math.random() * 2);
 };
-
-
-// export {getFragmentFromString, renderScreen, getRandomNumber};

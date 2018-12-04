@@ -4,7 +4,7 @@ import {statistic} from '../data/data.js';
 
 
 const questionsBlock = (roundDescription) => {
-  return `<h2 class="game__title">${roundDescription.question}</h2>
+  return `<h2 class="game__title" data-genre="${roundDescription.genre}">${roundDescription.question}</h2>
   <form class="game__tracks">
     <div class="track">
       <button class="track__button track__button--pause" type="button"></button>
@@ -14,7 +14,7 @@ const questionsBlock = (roundDescription) => {
         </audio>
       </div>
       <div class="game__answer">
-        <input class="game__input visually-hidden" type="checkbox" name="answer" value="answer-1" id="answer-1">
+        <input class="game__input visually-hidden" type="checkbox" name="answer" value="answer-1" id="answer-1" data-genre="${roundDescription.answers[0].genre}">
         <label class="game__check" for="answer-1">Отметить</label>
       </div>
     </div>
@@ -27,7 +27,7 @@ const questionsBlock = (roundDescription) => {
         </audio>
       </div>
       <div class="game__answer">
-        <input class="game__input visually-hidden" type="checkbox" name="answer" value="answer-1" id="answer-2">
+        <input class="game__input visually-hidden" type="checkbox" name="answer" value="answer-1" id="answer-2" data-genre="${roundDescription.answers[1].genre}">
         <label class="game__check" for="answer-2">Отметить</label>
       </div>
     </div>
@@ -40,7 +40,7 @@ const questionsBlock = (roundDescription) => {
         </audio>
       </div>
       <div class="game__answer">
-        <input class="game__input visually-hidden" type="checkbox" name="answer" value="answer-1" id="answer-3">
+        <input class="game__input visually-hidden" type="checkbox" name="answer" value="answer-1" id="answer-3" data-genre="${roundDescription.answers[2].genre}">
         <label class="game__check" for="answer-3">Отметить</label>
       </div>
     </div>
@@ -53,7 +53,7 @@ const questionsBlock = (roundDescription) => {
         </audio>
       </div>
       <div class="game__answer">
-        <input class="game__input visually-hidden" type="checkbox" name="answer" value="answer-1" id="answer-4">
+        <input class="game__input visually-hidden" type="checkbox" name="answer" value="answer-1" id="answer-4" data-genre="${roundDescription.answers[3].genre}">
         <label class="game__check" for="answer-4">Отметить</label>
       </div>
     </div>
@@ -64,6 +64,11 @@ const questionsBlock = (roundDescription) => {
 
 
 export const renderQuestionBlockForGenre = (round, currentGame) => {
+  const roundStatistic = {
+    answer: true,
+    time: 30
+  };
+
   const questionSection = document.querySelector(`.game__screen`);
   const gameMistakes = document.querySelector(`.game__mistakes`);
   // renderElement(questionSection, questionsBlock(questionList[`level-${round.level}`]));
@@ -125,17 +130,21 @@ export const renderQuestionBlockForGenre = (round, currentGame) => {
   // Обработчик события нажатия кнопки отправить
   gameSubmit.addEventListener(`click`, (evt) => {
     evt.preventDefault();
-    if (answerCheckbox[0].checked) {
-      const mistake = getFragmentFromString({tagName: `div`, classNameElement: `wrong`, screenLine: ``});
-      gameMistakes.appendChild(mistake);
-      currentGame.lives = currentGame.lives - 1;
+
+    const currentGenre = document.querySelector(`.game__title`).dataset.genre;
+    for (let it of answerCheckbox) {
+      if (it.checked && (it.dataset.genre !== currentGenre)) {
+        const mistake = getFragmentFromString({tagName: `div`, classNameElement: `wrong`, screenLine: ``});
+        gameMistakes.appendChild(mistake);
+        currentGame.lives = currentGame.lives - 1;
+        roundStatistic.answer = false;
+      }
     }
 
-    const roundValue = {
-      answer: true,
-      time: 30
-    };
-    statistic.push(roundValue);
+    // if (answerCheckbox[0].checked) {
+    // }
+
+    statistic.push(roundStatistic);
 
     nextLevel(currentGame);
   });

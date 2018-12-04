@@ -7,6 +7,7 @@ import {getFailTriesScreen} from '../view/fail-tries-screen.js';
 import {INITIAL_GAME, statistic} from '../data/data.js';
 import {getResultSuccessScreen} from '../view/result-success-screen.js';
 import musicData from '../data/musicData.js';
+import {changeTimer} from '../timer.js';
 
 
 const nextLevel = (game) => {
@@ -51,6 +52,7 @@ export const newGame = () => {
 
 
   renderGameScreen(currentGame);
+  changeTimer(currentGame);
 };
 
 export {nextLevel};

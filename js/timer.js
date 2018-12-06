@@ -17,11 +17,7 @@ const renderTimer = (game) => {
     game.timeMin = game.timeMin - 1;
     timerMins.textContent = `0${game.timeMin}`;
   }
-  if (game.timeSec < 10) {
-    timerSecs.textContent = `0${game.timeSec}`;
-  } else {
-    timerSecs.textContent = `${game.timeSec}`;
-  }
+  timerSecs.textContent = (game.timeSec < 10) ? `0${game.timeSec}` : `${game.timeSec}`;
   changeTimer(game);
 };
 

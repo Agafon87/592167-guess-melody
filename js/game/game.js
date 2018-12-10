@@ -1,5 +1,7 @@
+// Удалить после релиза
+
 import {getFragmentFromString, renderScreen} from '../util.js';
-import {getWelcomeScreen} from '../welcome/welcome-screen.js';
+// import {getWelcomeScreen} from '../welcome/welcome-screen.js';
 import {header} from '../view/header.js';
 import {renderQuestionBlockForGenre} from '../view/game-genre-screen.js';
 import {renderQuestionBlockForArtist} from '../view/game-artist-screen.js';
@@ -47,7 +49,6 @@ export const newGame = () => {
 
   // Обработчик события клика по иконке
   gameLogo.addEventListener(`click`, () => {
-    getWelcomeScreen();
   });
 
 

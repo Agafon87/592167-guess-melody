@@ -1,41 +1,11 @@
-export const INITIAL_GAME = {
+export const INITIAL_GAME = Object.freeze({
   level: 0,
-  lives: 3,
+  mistakes: 0,
   timeSec: 0,
   timeMin: 5,
-  offsetValue: 7.75
-};
-
-
-export const nextLevel = (game, level) => {
-  const newGame = Object.assign({}, game, {
-    level
-  });
-  return newGame;
-};
-
-export const getPointsScored = (answers) => {
-  let scored = 0;
-  if (answers.length < 10) {
-    return -1;
-  }
-  answers.forEach((it) => {
-    if (!it.answer) {
-      scored -= 2;
-    } else if (it.answer && it.time < 30) {
-      scored += 2;
-    } else if (it.answer) {
-      scored += 1;
-    }
-  });
-
-  return scored;
-};
-
-
-export const amountMistakes = (lives) => {
-  return `, совершив ${3 - lives} ошибки`;
-};
+  offsetValue: 7.75,
+  answers: []
+});
 
 
 export const outputResult = (resultAnotherPersons, currentGame) => {
@@ -58,17 +28,3 @@ export const outputResult = (resultAnotherPersons, currentGame) => {
 };
 
 export const statistic = [];
-
-
-export const countTime = (currentStatistic) => {
-  const timeAllRound = currentStatistic.map((it) => {
-    return it.time;
-  }).reduce((acc, value) => {
-    return acc + value;
-  });
-
-  const minutes = Math.floor(timeAllRound / 60);
-  const second = timeAllRound - (minutes * 60);
-
-  return `${minutes} минуты и ${second} секунды`;
-};

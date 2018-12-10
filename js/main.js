@@ -1,3 +1,3 @@
-import {getWelcomeScreen} from './welcome/welcome-screen.js';
+import Router from './router.js';
 
-getWelcomeScreen();
+Router.showWelcome();

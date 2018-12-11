@@ -72,24 +72,6 @@ export const countTime = (currentStatistic) => {
 };
 
 
-export const getPointsScored = (answers) => {
-  let scored = 0;
-  if (answers.length < 10) {
-    return -1;
-  }
-  answers.forEach((it) => {
-    if (!it.correct) {
-      scored -= 2;
-    } else if (it.correct && it.time < 30) {
-      scored += 2;
-    } else if (it.correct) {
-      scored += 1;
-    }
-  });
-
-  return scored;
-};
-
 export const amountMistakes = (mistakes) => {
   return `, совершив ${mistakes} ошибки`;
 };

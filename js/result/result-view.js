@@ -1,5 +1,6 @@
 import AbstractView from "../abstract-view";
-import {countTime, amountMistakes, getPointsScored, getFragmentFromString, renderScreen} from "../util";
+import {countTime, amountMistakes, getFragmentFromString, renderScreen} from "../util";
+import {getPointsScored} from "../data/data";
 
 export default class ResultView extends AbstractView {
   constructor(model) {

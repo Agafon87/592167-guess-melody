@@ -124,13 +124,8 @@ export default class GameGenreView extends AbstractView {
         }
       }
 
-      if (this.gameSubmit.disabled === true && answerCheckboxChecked === true) {
-        this.gameSubmit.disabled = false;
-      } else if (this.gameSubmit.disabled === false && answerCheckboxChecked === true) {
-        this.gameSubmit.disabled = false;
-      } else {
-        this.gameSubmit.disabled = true;
-      }
+
+      this.gameSubmit.disabled = (answerCheckboxChecked) ? false : true;
     };
 
     for (let it of this.answerCheckbox) {

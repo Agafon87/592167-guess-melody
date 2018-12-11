@@ -7,10 +7,8 @@ const testAnswers = (answer) => {
         return mistake;
       }
     }
-  } else if (answer.type === `artist`) {
-    if (answer.iscorrect === `false`) {
-      mistake = true;
-    }
+  } else if (answer.type === `artist` && answer.iscorrect === `false`) {
+    mistake = true;
   }
 
   return mistake;

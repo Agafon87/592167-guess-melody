@@ -60,11 +60,10 @@ export const nextLevel = (game, data) => {
 };
 
 export const countTime = (currentStatistic) => {
-  const timeAllRound = currentStatistic.map((it) => {
-    return it.time;
-  }).reduce((acc, value) => {
-    return acc + value;
-  });
+  let initialValue = 0;
+  const timeAllRound = currentStatistic.reduce((acc, value) => {
+    return acc + value.time;
+  }, initialValue);
 
   const minutes = Math.floor(timeAllRound / 60);
   const second = timeAllRound - (minutes * 60);

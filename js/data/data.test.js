@@ -1,34 +1,35 @@
 import {assert} from 'chai';
 import {getPointsScored, outputResult} from '../data/data.js';
 
+
 const playerScored10Points = [
-  {answer: true, time: 30},
-  {answer: true, time: 30},
-  {answer: true, time: 30},
-  {answer: true, time: 30},
-  {answer: true, time: 30},
-  {answer: true, time: 30},
-  {answer: true, time: 30},
-  {answer: true, time: 30},
-  {answer: true, time: 30},
-  {answer: true, time: 30}
+  {correct: true, time: 30},
+  {correct: true, time: 30},
+  {correct: true, time: 30},
+  {correct: true, time: 30},
+  {correct: true, time: 30},
+  {correct: true, time: 30},
+  {correct: true, time: 30},
+  {correct: true, time: 30},
+  {correct: true, time: 30},
+  {correct: true, time: 30}
 ];
 const playerLost = [
-  {answer: false, time: 30},
-  {answer: false, time: 30},
-  {answer: false, time: 30}
+  {correct: false, time: 30},
+  {correct: false, time: 30},
+  {correct: false, time: 30}
 ];
 const playerScoredMore10Points = [
-  {answer: true, time: 30},
-  {answer: true, time: 30},
-  {answer: true, time: 20},
-  {answer: true, time: 10},
-  {answer: true, time: 14},
-  {answer: true, time: 34},
-  {answer: true, time: 12},
-  {answer: true, time: 30},
-  {answer: true, time: 30},
-  {answer: true, time: 30}
+  {correct: true, time: 30},
+  {correct: true, time: 30},
+  {correct: true, time: 20},
+  {correct: true, time: 10},
+  {correct: true, time: 14},
+  {correct: true, time: 34},
+  {correct: true, time: 12},
+  {correct: true, time: 30},
+  {correct: true, time: 30},
+  {correct: true, time: 30}
 ];
 
 const timeLost = {

@@ -1,15 +1,7 @@
-import {
-  getFragmentFromString,
-  renderScreen
-} from '../util.js';
-import {
-  getWelcomeScreen
-} from '../welcome/welcome-screen.js';
-import {
-  getPointsScored,
-  amountMistakes,
-  countTime
-} from '../data/data.js';
+// удалить файл в релизе
+
+import {getFragmentFromString, renderScreen, countTime, getPointsScored} from '../util.js';
+import {amountMistakes} from '../data/data.js';
 
 
 const resultSuccessScreen = (game, statistic) => {
@@ -30,7 +22,6 @@ const getResultSuccessScreen = (game, statistic) => {
 
   const resultReplay = document.querySelector(`.result__replay`);
   resultReplay.addEventListener(`click`, () => {
-    getWelcomeScreen();
   });
 };
 

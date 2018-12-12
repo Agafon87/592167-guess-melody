@@ -1,3 +1,5 @@
+// удалить файл в релизе
+
 import {getFragmentFromString, renderElement} from '../util.js';
 import {nextLevel} from '../game/game.js';
 import {statistic} from '../data/data.js';

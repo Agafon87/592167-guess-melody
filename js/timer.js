@@ -2,6 +2,8 @@ import {getFailTimeScreen} from './view/fail-time-screen.js';
 
 const startSec = 60;
 let stepOffset = 7.75;
+let currentSec = 0;
+let counterRound = null;
 
 
 const renderTimer = (game) => {
@@ -17,11 +19,7 @@ const renderTimer = (game) => {
     game.timeMin = game.timeMin - 1;
     timerMins.textContent = `0${game.timeMin}`;
   }
-  if (game.timeSec < 10) {
-    timerSecs.textContent = `0${game.timeSec}`;
-  } else {
-    timerSecs.textContent = `${game.timeSec}`;
-  }
+  timerSecs.textContent = (game.timeSec < 10) ? `0${game.timeSec}` : `${game.timeSec}`;
   changeTimer(game);
 };
 
@@ -39,3 +37,29 @@ export const changeTimer = (game) => {
     renderCircleTimer(game);
   }, 1000);
 };
+
+const counterSecond = () => {
+  currentSec = currentSec + 1;
+};
+
+
+export default class Timer {
+  constructor(model) {
+    this.model = model;
+  }
+
+
+  onStartTimerForGame() {
+  }
+
+  onStartTimerForRound() {
+    const timerSecs = document.querySelector(`.timer__secs`);
+    currentSec = 0;
+    counterRound = setTimeout(counterSecond, 1000);
+    timerSecs.textContent = currentSec;
+  }
+
+  onStopTimerForRound() {
+    clearTimeout(counterRound);
+  }
+}

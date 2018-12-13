@@ -27,6 +27,10 @@ export default class GameModel {
     return DefaultValueGame.START_TIMER_DASHOFFSET / DefaultValueGame.START_TIME * (DefaultValueGame.START_TIME - this.state.time);
   }
 
+  get isRoundsLeft() {
+    return this.state.answers.length >= DefaultValueGame.ANSWERS_COUNT;
+  }
+
   init(state) {
     this.state = state;
   }

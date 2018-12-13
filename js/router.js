@@ -3,12 +3,14 @@ import GamePresenter from "./game/game-presenter";
 import musicData from "./data/musicData";
 import getAudioUrls from "./get-audio-urls";
 import audioPreloader from "./audio-preloader";
+import failView from "./fail/fail-view";
+import statView from "./result/stat-view";
 
 const ControllerId = {
   WELCOME: ``,
   GAME: `game`,
-  RESULT: `result`,
-  LOOSE: `loose`,
+  STAT: `result`,
+  FAIL: `fail`,
 };
 
 export default class Router {
@@ -18,8 +20,8 @@ export default class Router {
     Router.routes = {
       [ControllerId.WELCOME]: welcomePresenter,
       [ControllerId.GAME]: new GamePresenter(musicData),
-      [ControllerId.LOOSE]: FailPresenter,
-      // [ControllerId.RESULT]: resultScreen,
+      [ControllerId.FAIL]: failView,
+      [ControllerId.STAT]: statView,
     };
 
     const audios = getAudioUrls(questions);
@@ -36,6 +38,11 @@ export default class Router {
   }
 
   static showFail(data) {
-    Router.routes[ControllerId.LOOSE].init(data);
+    Router.routes[ControllerId.FAIL].init(data);
+  }
+
+  static showStat(gameStat) {
+    const allStat = [5, 3, 7, 10, 4, 13, 20, 17];
+    Router.routes[ControllerId.STAT].init(gameStat, allStat);
   }
 }

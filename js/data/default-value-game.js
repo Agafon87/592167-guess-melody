@@ -1,5 +1,5 @@
 const DefaultValueGame = {
-  START_TIME: 1 * 60,
+  START_TIME: 5 * 60,
   START_BLINK_TIME: 30,
   MAX_MISTAKES: 3,
   FAST_ANSWER_MAX_TIME: 29,

@@ -3,6 +3,7 @@ import {INITIAL_GAME} from "../data/data";
 import GameView from "./game-view";
 import changeScreenView from "../change-screen";
 import Router from "../router";
+import DefaultValueGame from "../data/default-value-game";
 
 export default class GamePresenter {
   constructor(questions) {
@@ -13,6 +14,7 @@ export default class GamePresenter {
     this.model.update(INITIAL_GAME);
     this.view = new GameView(this.model);
     this.view.onWelcome = () => {
+      clearTimeout(this._intervalId);
       Router.showWelcome();
     };
     this.view.onAnswer = this.onAnswer.bind(this);
@@ -24,7 +26,16 @@ export default class GamePresenter {
 
   gameOver() {
     clearTimeout(this._intervalId);
-    Router.showFail(this.model);
+    if (this.model.isRoundsLeft) {
+      const data = {
+        answers: this.model.state.answers,
+        time: DefaultValueGame.START_TIME - this.model.state.time,
+        mistakes: this.model.state.mistakes
+      };
+      Router.showStat(data);
+    } else {
+      Router.showFail(this.model.state.mistakes);
+    }
   }
 
   tick() {
@@ -40,7 +51,7 @@ export default class GamePresenter {
     // Тут код для остановки аудио
 
     this.model.onAnswer(answer);
-    if (this.model.isTimeLeft || this.model.isMistakesLeft) {
+    if (this.model.isTimeLeft || this.model.isMistakesLeft || this.model.isRoundsLeft) {
       this.gameOver();
     } else {
       this.model.nextRound();

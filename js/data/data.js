@@ -1,9 +1,10 @@
+import DefaultValueGame from "./default-value-game";
+
 export const INITIAL_GAME = Object.freeze({
-  level: 0,
+  time: DefaultValueGame.START_TIME,
+  currentRoundTime: 0,
   mistakes: 0,
-  timeSec: 0,
-  timeMin: 5,
-  offsetValue: 7.75,
+  currentRound: 0,
   answers: []
 });
 

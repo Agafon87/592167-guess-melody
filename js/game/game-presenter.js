@@ -1,40 +1,61 @@
-import GameView from "./game-view";
-import Router from "../router";
-import {INITIAL_GAME} from "../data/data";
 import GameModel from "./game-model";
-import Timer from "../timer";
-
+import {INITIAL_GAME} from "../data/data";
+import GameView from "./game-view";
+import changeScreenView from "../change-screen";
+import Router from "../router";
+import DefaultValueGame from "../data/default-value-game";
 
 export default class GamePresenter {
-  constructor() {
-    this.model = new GameModel(Object.assign({}, INITIAL_GAME));
-    this.model.data.answers.splice(0, this.model.data.answers.length);
+  constructor(questions) {
+    this.model = new GameModel(questions);
+  }
+
+  init() {
+    this.model.update(INITIAL_GAME);
     this.view = new GameView(this.model);
-    this.timer = new Timer(this.model);
-
-
     this.view.onWelcome = () => {
+      clearTimeout(this._intervalId);
       Router.showWelcome();
     };
+    this.view.onAnswer = this.onAnswer.bind(this);
+    changeScreenView(this.view);
+    this._intervalId = setInterval(() => {
+      this.tick();
+    }, 1000);
+  }
 
-    this.view.startTimer = () => {
-      this.timer.onStartTimerForRound();
-    };
+  gameOver() {
+    clearTimeout(this._intervalId);
+    if (this.model.isRoundsLeft) {
+      const data = {
+        answers: this.model.state.answers,
+        time: DefaultValueGame.START_TIME - this.model.state.time,
+        mistakes: this.model.state.mistakes
+      };
+      Router.showStat(data);
+    } else {
+      Router.showFail(this.model.state.mistakes);
+    }
+  }
 
-    this.model.onResult = () => {
-      Router.showResults(this.model);
-    };
+  tick() {
+    this.model.tick();
+    if (this.model.isTimeLeft) {
+      this.gameOver();
+    } else {
+      this.view.updateTimer();
+    }
+  }
 
-    this.model.onFailTries = () => {
-      Router.showFailTriesScreen();
-    };
+  onAnswer(answer) {
+    // Тут код для остановки аудио
 
-
-    this.view.onAnswer = (answer, game) => {
-      this.model.changeModel(answer, game);
-      this.view.changeMistake(this.model);
-      this.view.changeGameScreen(this.model);
-    };
-    return this.view.element;
+    this.model.onAnswer(answer);
+    if (this.model.isTimeLeft || this.model.isMistakesLeft || this.model.isRoundsLeft) {
+      this.gameOver();
+    } else {
+      this.model.nextRound();
+      this.view.updateRound();
+    }
   }
 }

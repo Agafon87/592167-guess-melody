@@ -1,52 +1,81 @@
-const testAnswers = (answer) => {
-  let mistake = false;
-  if (answer.type === `genre`) {
-    for (let it of answer.answers) {
-      if (it.checked && (it.dataset.genre !== answer.currentGenre)) {
-        mistake = true;
-        return mistake;
-      }
-    }
-  } else if (answer.type === `artist` && answer.iscorrect === `false`) {
-    mistake = true;
-  }
+import DefaultValueGame from "../data/default-value-game";
 
-  return mistake;
+const PointsForAnswer = {
+  FAST: 2,
+  SLOW: 1,
+  WRONG: -2
 };
 
 export default class GameModel {
-  constructor(data) {
-    this.data = data;
+  constructor(questions) {
+    this.questions = questions;
   }
 
-
-  changeModel(answer, newData) {
-    const currentAnswer = {
-      time: 30
-    };
-    if (testAnswers(answer)) {
-      newData.mistakes = newData.mistakes + 1;
-      currentAnswer.correct = false;
-    } else {
-      currentAnswer.correct = true;
-    }
-    newData.answers.push(currentAnswer);
-    newData.level = newData.level + 1;
-    this.data = newData;
-
-    if (this.data.mistakes >= 3) {
-      this.onFailTries();
-    }
-
-    if (this.data.level >= 10) {
-      this.onResult();
-    }
+  get roundData() {
+    return this.questions[this.state.currentRound];
   }
 
-
-  onFailTries() {
+  get isMistakesLeft() {
+    return this.state.mistakes >= DefaultValueGame.MAX_MISTAKES;
   }
 
-  onResult() {
+  get isTimeLeft() {
+    return this.state.time === 0;
+  }
+
+  get dashoffset() {
+    return DefaultValueGame.START_TIMER_DASHOFFSET / DefaultValueGame.START_TIME * (DefaultValueGame.START_TIME - this.state.time);
+  }
+
+  get isRoundsLeft() {
+    return this.state.answers.length >= DefaultValueGame.ANSWERS_COUNT;
+  }
+
+  init(state) {
+    this.state = state;
+  }
+
+  update(data) {
+    this.state = Object.assign({}, this.state, data);
+    return this.state;
+  }
+
+  nextRound() {
+    this.update({currentRound: this.state.currentRound + 1});
+  }
+
+  tick() {
+    this.update({
+      time: this.state.time - 1,
+      currentRoundTime: this.state.currentRoundTime + 1
+    });
+  }
+
+  encodeAnswer(answer) {
+    if (answer.isCorrect) {
+      return (answer.isFast ? PointsForAnswer.FAST : PointsForAnswer.SLOW);
+    }
+    return PointsForAnswer.WRONG;
+  }
+
+  answerFromGenre(answer) {
+    for (let it of answer) {
+      if (it.checked && (this.questions[this.state.currentRound].answers[answer.indexOf(it)].genre !== this.questions[this.state.currentRound].genre)) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  onAnswer(answer) {
+    const isCorrect = (answer instanceof Array) ? this.answerFromGenre(answer) : answer;
+    const isFast = this.state.currentRoundTime <= DefaultValueGame.FAST_ANSWER_MAX_TIME;
+    this.update({
+      answers: this.state.answers.concat([
+        this.encodeAnswer({isCorrect, isFast})
+      ]),
+      currentRoundTime: 0,
+      mistakes: this.state.mistakes + (isCorrect ? 0 : 1)
+    });
   }
 }

@@ -5,6 +5,7 @@ import getAudioUrls from "./get-audio-urls";
 import audioPreloader from "./audio-preloader";
 import failView from "./fail/fail-view";
 import statView from "./result/stat-view";
+import Loader from "./loader";
 
 const ControllerId = {
   WELCOME: ``,
@@ -16,7 +17,14 @@ const ControllerId = {
 export default class Router {
 
   static init() {
+    // const questions = Loader.loadData();
+    const data = fetch(`https://es.dump.academy/guess-melody/questions`);
+    data.
+    then((response) => response.json()).
+    then((dan) => console.log(dan));
+
     const questions = musicData;
+    console.log(questions);
     Router.routes = {
       [ControllerId.WELCOME]: welcomePresenter,
       [ControllerId.GAME]: new GamePresenter(musicData),

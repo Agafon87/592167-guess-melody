@@ -14,7 +14,7 @@ export default [
       "genre": `rock`
     }, {
       "src": `https://freemusicarchive.org/music/listen/506f1c4b1a6c8d5f67b20b47f854fef8c54c7fc8`,
-      "genre": `jazz`
+      "genre": `folk`
     }]
   }, {
     "type": `artist`,

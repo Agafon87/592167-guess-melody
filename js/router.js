@@ -1,11 +1,11 @@
 import welcomePresenter from "./welcome/welcome-presenter";
 import GamePresenter from "./game/game-presenter";
 import musicData from "./data/musicData";
-import getAudioUrls from "./get-audio-urls";
-import audioPreloader from "./audio-preloader";
+// import getAudioUrls from "./get-audio-urls";
+// import audioPreloader from "./audio-preloader";
 import failView from "./fail/fail-view";
 import statView from "./result/stat-view";
-import Loader from "./loader";
+// import Loader from "./loader";
 
 const ControllerId = {
   WELCOME: ``,
@@ -16,24 +16,23 @@ const ControllerId = {
 
 export default class Router {
 
-  static init() {
-    // const questions = Loader.loadData();
-    const data = fetch(`https://es.dump.academy/guess-melody/questions`);
-    data.
-    then((response) => response.json()).
-    then((dan) => console.log(dan));
+  static start() {
+    // window.fetch(`https://es.dump.academy/guess-melody/questions`).
+    //   then((response) => response.json()).
+    //   then((data) => Router.init(data));
+    Router.init(musicData);
+  }
 
-    const questions = musicData;
-    console.log(questions);
+  static init(questions) {
     Router.routes = {
       [ControllerId.WELCOME]: welcomePresenter,
-      [ControllerId.GAME]: new GamePresenter(musicData),
+      [ControllerId.GAME]: new GamePresenter(questions),
       [ControllerId.FAIL]: failView,
       [ControllerId.STAT]: statView,
     };
 
-    const audios = getAudioUrls(questions);
-    audioPreloader.preloadAudios(audios);
+    // const audios = getAudioUrls(questions);
+    // audioPreloader.preloadAudios(audios);
     Router.showWelcome();
   }
 

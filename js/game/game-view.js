@@ -59,6 +59,18 @@ export default class GameView extends AbstractView {
     this._gameMistakes.innerHTML = mistakesPartialView(this.model.state.mistakes);
   }
 
+  visibleCorrectValue(debug) {
+    const roundQuestion = this.model.questions[this.model.state.currentRound];
+    if (debug && roundQuestion.type === `genre`) {
+      const notes = this.element.querySelectorAll(`.game__answer > label`);
+      console.log(notes);
+      // alert(`мы выбираем жанр`);
+    } else if (debug && roundQuestion.type === `artist`) {
+      // alert(`мы выбираем артиста`);
+    }
+
+  }
+
   updateTimer() {
     const seconds = this.model.state.time;
     this._timerMins.textContent = `0${seconds / 60 >> 0}`.slice(-2);
@@ -117,7 +129,7 @@ export default class GameView extends AbstractView {
     });
 
     this.updateTimer();
-    this.updateRound();
+    this.updateRound(this.debug);
   }
 
   onAnswer() {

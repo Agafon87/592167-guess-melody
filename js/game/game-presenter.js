@@ -5,12 +5,19 @@ import changeScreenView from "../change-screen";
 import Router from "../router";
 import DefaultValueGame from "../data/default-value-game";
 
+let debug = false;
+
 export default class GamePresenter {
   constructor(questions) {
     this.model = new GameModel(questions);
   }
 
   init() {
+    window.onhashchange = () => {
+      debug = (location.hash.replace(`#`, ``) === `debug`) ? true : false;
+      this.isDebug();
+    };
+    // console.log(location);
     this.model.update(INITIAL_GAME);
     this.view = new GameView(this.model);
     this.view.onWelcome = () => {
@@ -19,6 +26,7 @@ export default class GamePresenter {
     };
     this.view.onAnswer = this.onAnswer.bind(this);
     changeScreenView(this.view);
+    this.isDebug();
     this._intervalId = setInterval(() => {
       this.tick();
     }, 1000);
@@ -47,6 +55,10 @@ export default class GamePresenter {
     }
   }
 
+  isDebug() {
+    this.view.visibleCorrectValue(debug);
+  }
+
   onAnswer(answer) {
     // Тут код для остановки аудио
 
@@ -56,6 +68,7 @@ export default class GamePresenter {
     } else {
       this.model.nextRound();
       this.view.updateRound();
+      this.isDebug();
     }
   }
 }

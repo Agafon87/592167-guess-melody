@@ -61,14 +61,36 @@ export default class GameView extends AbstractView {
 
   visibleCorrectValue(debug) {
     const roundQuestion = this.model.questions[this.model.state.currentRound];
-    if (debug && roundQuestion.type === `genre`) {
-      const notes = this.element.querySelectorAll(`.game__answer > label`);
-      console.log(notes);
-      // alert(`мы выбираем жанр`);
-    } else if (debug && roundQuestion.type === `artist`) {
-      // alert(`мы выбираем артиста`);
+    if (roundQuestion.type === `genre`) {
+      this.debugGenre(roundQuestion.genre, debug);
+    } else if (roundQuestion.type === `artist`) {
+      this.debugArtist(debug);
     }
 
+  }
+
+  debugGenre(genre, debug) {
+    const notes = this.element.querySelectorAll(`.game__answer > label`);
+    for (let it of notes) {
+      if (it.dataset.genre === genre) {
+        if (debug) {
+          it.classList.add(`game__check__correct`);
+        } else {
+          it.classList.remove(`game__check__correct`);
+        }
+      }
+    }
+  }
+
+  debugArtist(debug) {
+    const artistsImg = this.element.querySelectorAll(`.artist__name > img`);
+    for (let it of artistsImg) {
+      if (it.dataset.correct === `true` && debug) {
+        it.classList.add(`artist__picture__correct`);
+      } else {
+        it.classList.remove(`artist__picture__correct`);
+      }
+    }
   }
 
   updateTimer() {
@@ -89,6 +111,11 @@ export default class GameView extends AbstractView {
       this._activeAudio.pause();
     }
   }
+
+  // addModalConfirm() {
+  //   this._modalConfirm = new ModalConfirm();
+  //   this.element.appendChild(this._modalConfirm.element);
+  // }
 
   bind() {
     this._gameMistakes = this.element.querySelector(`.game__mistakes`);

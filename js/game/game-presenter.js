@@ -12,19 +12,20 @@ export default class GamePresenter {
     this.model = new GameModel(questions);
   }
 
-  init() {
+  init(initialState) {
     window.onhashchange = () => {
       debug = (location.hash.replace(`#`, ``) === `debug`) ? true : false;
       this.isDebug();
     };
-    // console.log(location);
-    this.model.update(INITIAL_GAME);
+    this.model.update(initialState);
     this.view = new GameView(this.model);
     this.view.onWelcome = () => {
       clearTimeout(this._intervalId);
-      Router.showWelcome();
+      Router.showModalConfirm(this.model.state);
+      // Router.showWelcome();
     };
     this.view.onAnswer = this.onAnswer.bind(this);
+    // this.view.addModalConfirm();
     changeScreenView(this.view);
     this.isDebug();
     this._intervalId = setInterval(() => {

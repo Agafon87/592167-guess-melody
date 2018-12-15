@@ -27,6 +27,10 @@
   cursor: pointer;
 }
 
+.artist__picture__correct {
+  border: solid 5px $color-correct;
+}
+
 .artist:hover .artist__picture,
 .artist__input:focus + .artist__name .artist__picture {
   border-color: $color-orange;

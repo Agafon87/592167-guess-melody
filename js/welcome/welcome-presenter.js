@@ -1,16 +1,17 @@
 import WelcomeView from "./welcome-view";
+import changeScreenView from "../change-screen";
 import Router from "../router";
 
 
-export default class WelcomePresenter {
-  constructor() {
+class WelcomePresenter {
+  init() {
     this.view = new WelcomeView();
+    changeScreenView(this.view);
 
-    this.view.onAnswer = () => {
+    this.view.onGameStart = () => {
       Router.showGame();
     };
-
-    return this.view.element;
   }
-
 }
+
+export default new WelcomePresenter();

@@ -1,9 +1,3 @@
-const render = (html) => {
-  const wrapper = document.createElement(`div`);
-  wrapper.innerHTML = html.trim();
-  return wrapper;
-};
-
 export default class AbstractView {
   constructor() {
     if (new.target === AbstractView) {
@@ -12,23 +6,23 @@ export default class AbstractView {
   }
 
   get template() {
-    throw new Error(`Template is required`);
-  }
-
-  get element() {
-    if (this._element) {
-      return this.element;
-    }
-    this._element = this.render();
-    this.bind(this._element);
-    return this._element;
+    throw new Error(`You have to define screen template for view`);
   }
 
   render() {
-    return render(this.template);
+    const parser = new DOMParser();
+    const result = parser.parseFromString(this.template, `text/html`);
+
+    return result.body.firstElementChild;
   }
 
-  bind() {
-    throw new Error(`Bind handlers if required`);
+  bind() {}
+
+  get element() {
+    if (!this._element) {
+      this._element = this.render();
+      this.bind();
+    }
+    return this._element;
   }
 }

@@ -1,23 +1,48 @@
-import WelcomePresenter from "./welcome/welcome-presenter";
+import welcomePresenter from "./welcome/welcome-presenter";
 import GamePresenter from "./game/game-presenter";
-import FailTriesPresenter from "./fail/fail-tries-presenter";
-import ResultPresenter from "./result/result-presenter";
+import musicData from "./data/musicData";
+import getAudioUrls from "./get-audio-urls";
+import audioPreloader from "./audio-preloader";
+import failView from "./fail/fail-view";
+import statView from "./result/stat-view";
+
+const ControllerId = {
+  WELCOME: ``,
+  GAME: `game`,
+  STAT: `result`,
+  FAIL: `fail`,
+};
 
 export default class Router {
 
+  static init() {
+    const questions = musicData;
+    Router.routes = {
+      [ControllerId.WELCOME]: welcomePresenter,
+      [ControllerId.GAME]: new GamePresenter(musicData),
+      [ControllerId.FAIL]: failView,
+      [ControllerId.STAT]: statView,
+    };
+
+    const audios = getAudioUrls(questions);
+    audioPreloader.preloadAudios(audios);
+    Router.showWelcome();
+  }
+
   static showWelcome() {
-    return new WelcomePresenter();
+    Router.routes[ControllerId.WELCOME].init();
   }
 
   static showGame() {
-    return new GamePresenter();
+    Router.routes[ControllerId.GAME].init();
   }
 
-  static showFailTriesScreen() {
-    return new FailTriesPresenter();
+  static showFail(data) {
+    Router.routes[ControllerId.FAIL].init(data);
   }
 
-  static showResults(model) {
-    return new ResultPresenter(model);
+  static showStat(gameStat) {
+    const allStat = [5, 3, 7, 10, 4, 13, 20, 17];
+    Router.routes[ControllerId.STAT].init(gameStat, allStat);
   }
 }

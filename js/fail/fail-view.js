@@ -2,6 +2,7 @@ import AbstractView from "../abstract-view";
 import changeScreenView from "../change-screen";
 import Router from "../router";
 import DefaultValueGame from "../data/default-value-game";
+import {INITIAL_GAME} from "../data/data";
 
 const getFailTimeTitle = () => {
   return `
@@ -45,7 +46,7 @@ class FailView extends AbstractView {
   }
 
   onReplay() {
-    Router.showGame();
+    Router.showGame(INITIAL_GAME);
   }
 }
 

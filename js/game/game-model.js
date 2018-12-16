@@ -60,6 +60,9 @@ export default class GameModel {
 
   answerFromGenre(answer) {
     for (let it of answer) {
+      if (!it.checked && (this.questions[this.state.currentRound].answers[answer.indexOf(it)].genre === this.questions[this.state.currentRound].genre)) {
+        return false;
+      }
       if (it.checked && (this.questions[this.state.currentRound].answers[answer.indexOf(it)].genre !== this.questions[this.state.currentRound].genre)) {
         return false;
       }

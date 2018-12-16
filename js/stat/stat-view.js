@@ -2,6 +2,7 @@ import AbstractView from "../abstract-view";
 import Router from "../router";
 import changeScreenView from "../change-screen";
 import {getResultTotal, getResultText} from "../util";
+import {INITIAL_GAME} from "../data/data";
 
 class StatView extends AbstractView {
   get template() {
@@ -17,6 +18,9 @@ class StatView extends AbstractView {
   }
 
   init(gameStat, allStat) {
+    if (this._element) {
+      delete this._element;
+    }
     this.gameStat = gameStat;
     this.allStat = allStat;
     changeScreenView(this);
@@ -32,7 +36,7 @@ class StatView extends AbstractView {
 
 
   onReplay() {
-    Router.showGame();
+    Router.showGame(INITIAL_GAME);
   }
 }
 

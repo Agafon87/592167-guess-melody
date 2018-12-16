@@ -27,7 +27,7 @@ export default class GameGenreView extends AbstractView {
         </div>
         <div class="game__answer">
           <input class="game__input visually-hidden" type="checkbox" name="answer" value="answer-${index + 1}" id="answer-${index + 1}">
-          <label class="game__check" for="answer-${index + 1}">Отметить</label>
+          <label class="game__check" for="answer-${index + 1}" data-genre=${answer.genre}>Отметить</label>
         </div>
       </div>
       `.trim();

@@ -1,6 +1,7 @@
 import WelcomeView from "./welcome-view";
 import changeScreenView from "../change-screen";
 import Router from "../router";
+import {INITIAL_GAME} from "../data/data";
 
 
 class WelcomePresenter {
@@ -9,7 +10,7 @@ class WelcomePresenter {
     changeScreenView(this.view);
 
     this.view.onGameStart = () => {
-      Router.showGame();
+      Router.showGame(INITIAL_GAME);
     };
   }
 }

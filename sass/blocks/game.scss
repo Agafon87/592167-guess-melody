@@ -97,6 +97,20 @@
   cursor: pointer;
 }
 
+.game__check__correct {
+  display: block;
+
+  width: 35px;
+  height: 49px;
+
+  font-size: 0;
+
+  background-image: url("../img/sprite.png");
+  background-position: -5px -64px;
+
+  cursor: pointer;
+}
+
 .game__input:checked + .game__check {
   background-position: -5px -5px;
 }

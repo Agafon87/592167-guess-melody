@@ -1,24 +1,32 @@
 import GameModel from "./game-model";
-import {INITIAL_GAME} from "../data/data";
 import GameView from "./game-view";
 import changeScreenView from "../change-screen";
 import Router from "../router";
 import DefaultValueGame from "../data/default-value-game";
+
+let debug = false;
 
 export default class GamePresenter {
   constructor(questions) {
     this.model = new GameModel(questions);
   }
 
-  init() {
-    this.model.update(INITIAL_GAME);
+  init(initialState) {
+    window.onhashchange = () => {
+      debug = (location.hash.replace(`#`, ``) === `debug`) ? true : false;
+      this.isDebug();
+    };
+    this.model.update(initialState);
     this.view = new GameView(this.model);
     this.view.onWelcome = () => {
       clearTimeout(this._intervalId);
-      Router.showWelcome();
+      Router.showModalConfirm(this.model.state);
+      // Router.showWelcome();
     };
     this.view.onAnswer = this.onAnswer.bind(this);
+    // this.view.addModalConfirm();
     changeScreenView(this.view);
+    this.isDebug();
     this._intervalId = setInterval(() => {
       this.tick();
     }, 1000);
@@ -47,6 +55,10 @@ export default class GamePresenter {
     }
   }
 
+  isDebug() {
+    this.view.visibleCorrectValue(debug);
+  }
+
   onAnswer(answer) {
     // Тут код для остановки аудио
 
@@ -56,6 +68,7 @@ export default class GamePresenter {
     } else {
       this.model.nextRound();
       this.view.updateRound();
+      this.isDebug();
     }
   }
 }

@@ -1,5 +1,4 @@
 import GameModel from "./game-model";
-import {INITIAL_GAME} from "../data/data";
 import GameView from "./game-view";
 import changeScreenView from "../change-screen";
 import Router from "../router";

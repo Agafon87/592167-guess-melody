@@ -9,7 +9,7 @@ import changeScreenView from "./change-screen";
 import capView from "./view/cap-view";
 import ErrorModal from "./modal/modal-error";
 import ModalConfirm from "./modal/modal-confirm";
-// import Loader from "./loader";
+import Loader from "./loader";
 
 const ControllerId = {
   WELCOME: ``,
@@ -18,23 +18,12 @@ const ControllerId = {
   FAIL: `fail`,
 };
 
-const checkStatus = (response) => {
-  if (response.status >= 200 && response.status < 300) {
-    return response;
-  } else {
-    throw new Error(`${response.status}: ${response.statusText}`);
-  }
-};
 
 export default class Router {
 
   static start() {
     changeScreenView(capView);
-    window.fetch(`https://es.dump.academy/guess-melody/questions`).
-      then(checkStatus).
-      then((response) => response.json()).
-      then((data) => Router.init(data)).
-      catch(Router.showModalError);
+    Loader.loadData();
   }
 
   static init(questions) {
@@ -63,8 +52,10 @@ export default class Router {
   }
 
   static showStat(gameStat) {
-    const allStat = [5, 3, 7, 10, 4, 13, 20, 17];
-    Router.routes[ControllerId.STAT].init(gameStat, allStat);
+    changeScreenView(capView);
+    Loader.saveResults(gameStat).
+      then(() => Loader.loadResults()).
+      then((allStat) => Router.routes[ControllerId.STAT].init(gameStat, allStat));
   }
 
   static showModalError(error) {

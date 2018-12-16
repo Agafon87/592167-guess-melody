@@ -128,10 +128,16 @@ export const getResultTotal = (gameStat) => {
 
 export const getResultText = (gameStat, allStat) => {
 
-  let statistics = allStat.slice();
+  const statistics = allStat.map((it) => {
+    return it.answers.reduce((acc, idx) => {
+      return acc + idx;
+    });
+  });
+
   const points = gameStat.answers.reduce((acc, idx) => {
     return acc + idx;
   });
+
   statistics.push(points);
   statistics.sort((a, b) => {
     return b - a;

@@ -5,6 +5,7 @@ import Router from "../router";
 import DefaultValueGame from "../data/default-value-game";
 
 let debug = false;
+const ONE_SECOND = 1000;
 
 export default class GamePresenter {
   constructor(questions) {
@@ -20,16 +21,15 @@ export default class GamePresenter {
     this.view = new GameView(this.model);
     this.view.onWelcome = () => {
       clearTimeout(this._intervalId);
+      this.view.stopActiveAudio();
       Router.showModalConfirm(this.model.state);
-      // Router.showWelcome();
     };
     this.view.onAnswer = this.onAnswer.bind(this);
-    // this.view.addModalConfirm();
     changeScreenView(this.view);
     this.isDebug();
     this._intervalId = setInterval(() => {
       this.tick();
-    }, 1000);
+    }, ONE_SECOND);
   }
 
   gameOver() {
@@ -60,7 +60,7 @@ export default class GamePresenter {
   }
 
   onAnswer(answer) {
-    // Тут код для остановки аудио
+    this.view.stopActiveAudio();
 
     this.model.onAnswer(answer);
     if (this.model.isTimeLeft || this.model.isMistakesLeft || this.model.isRoundsLeft) {

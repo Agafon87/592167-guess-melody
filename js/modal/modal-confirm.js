@@ -24,6 +24,10 @@ export default class ModalConfirm extends AbstractView {
 
   bind() {
     this.closeButton = this._element.querySelector(`.modal__close`);
+    this.closeButton.addEventListener(`click`, () => {
+      Router.showGame(this.state);
+    });
+
     this.choseButtons = this._element.querySelectorAll(`.modal__button`);
     for (let it of this.choseButtons) {
       it.addEventListener(`click`, (evt) => {

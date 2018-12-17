@@ -55,6 +55,9 @@ export default class GameView extends AbstractView {
       this.onAnswer(answer);
     };
     this.element.appendChild(this._gameRound.element);
+    setTimeout(() => {
+      this.element.querySelector(`.track__button`).click();
+    });
 
     this._gameMistakes.innerHTML = mistakesPartialView(this.model.state.mistakes);
   }
@@ -112,10 +115,6 @@ export default class GameView extends AbstractView {
     }
   }
 
-  // addModalConfirm() {
-  //   this._modalConfirm = new ModalConfirm();
-  //   this.element.appendChild(this._modalConfirm.element);
-  // }
 
   bind() {
     this._gameMistakes = this.element.querySelector(`.game__mistakes`);

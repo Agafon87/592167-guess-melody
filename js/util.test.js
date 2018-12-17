@@ -24,28 +24,9 @@ const gameStat = {
   time: 154
 };
 
-// const resultAnotherPersonsLocal = [4, 5, 8, 12, 14];
-
 
 describe(`Проверка функции вывода места игрока в статистике`, () => {
   it(`Проверка, что правильно вычисляется процент в статистике`, () => {
     assert.equal(getResultText(gameStat, anotherStat), `Вы заняли 9 место из 9 игроков. Это лучше, чем у 0% игроков`);
-    // assert.deepEqual(getResultText(gameStat, anotherStat), [20, 20, 20, 20, 20, 20, 20, 20, 6]);
   });
-  // it(`Проверка, что закончились все жизни`, () => {
-  //   assert.equal(getResultText(resultAnotherPersonsLocal, notesLost), `У вас закончились все попытки. Ничего, повезёт в следующий раз!`);
-  // });
-  // it(`Проверка правильного подсчета места в статистике`, () => {
-  //   assert.equal(getResultText(resultAnotherPersonsLocal, normalGame), `Вы заняли 2 место из 6 игроков. Это лучше, чем у 67% игроков`);
-  // });
 });
-
-// describe(`Проверка функции переключения уровней`, () => {
-//   it(`Проверяем что уровни переключаются корректно`, () => {
-//     // assert.equal(nextLevel(INITIAL_GAME, 1).level, 1);
-//     // assert.equal(nextLevel(INITIAL_GAME, 3).level, 3);
-//     // assert.equal(nextLevel(INITIAL_GAME, 6).level, 6);
-//     // assert.equal(nextLevel(INITIAL_GAME, 9).level, 9);
-//     // assert.equal(nextLevel(INITIAL_GAME, 10).level, 10);
-//   });
-// });

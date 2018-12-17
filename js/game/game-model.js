@@ -1,9 +1,9 @@
 import DefaultValueGame from "../data/default-value-game";
 
 const PointsForAnswer = {
-  FAST: 2,
-  SLOW: 1,
-  WRONG: -2
+  FAST: DefaultValueGame.FAST_ANSWER_POINTS,
+  SLOW: DefaultValueGame.SLOW_ANSWER_POINTS,
+  WRONG: DefaultValueGame.WRONG_ANSWER_POINTS
 };
 
 export default class GameModel {

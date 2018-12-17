@@ -1,6 +1,5 @@
 import welcomePresenter from "./welcome/welcome-presenter";
 import GamePresenter from "./game/game-presenter";
-// import musicData from "./data/musicData";
 import getAudioUrls from "./get-audio-urls";
 import audioPreloader from "./audio-preloader";
 import failView from "./fail/fail-view";

@@ -5,6 +5,7 @@ import Router from "../router";
 import DefaultValueGame from "../data/default-value-game";
 
 let debug = false;
+const ONE_SECOND = 1000;
 
 export default class GamePresenter {
   constructor(questions) {
@@ -28,7 +29,7 @@ export default class GamePresenter {
     this.isDebug();
     this._intervalId = setInterval(() => {
       this.tick();
-    }, 1000);
+    }, ONE_SECOND);
   }
 
   gameOver() {

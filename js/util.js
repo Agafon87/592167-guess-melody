@@ -1,5 +1,6 @@
 import GameGenreView from "./game/game-genre-view";
 import GameArtistView from "./game/game-artist-view";
+import DefaultValueGame from "./data/default-value-game";
 
 
 export const renderGameScreen = (game, data) => {
@@ -31,7 +32,7 @@ const normalizeTextForNum = (text, forms, num) => {
 export const getResultTotal = (gameStat) => {
   const {answers, time, mistakes} = gameStat;
 
-  const fastAnswers = answers.filter((answer) => answer === 2).length;
+  const fastAnswers = answers.filter((answer) => answer === DefaultValueGame.FAST_ANSWER_POINTS).length;
   const fastAnswersText = normalizeTextForNum(`быстры`, [`й`, `х`, `х`], fastAnswers);
   const minuts = Math.floor(time / 60);
   const minutsText = normalizeTextForNum(`минут`, [`у`, `ы`, ``], minuts);

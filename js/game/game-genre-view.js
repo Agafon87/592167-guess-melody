@@ -35,20 +35,20 @@ export default class GameGenreView extends AbstractView {
   }
 
   bind() {
-    const answersCheckbox = [...this.element.querySelectorAll(`.game__input`)];
+    const answersCheckboxs = [...this.element.querySelectorAll(`.game__input`)];
     const answerButton = this.element.querySelector(`.game__submit`);
     answerButton.disabled = true;
 
     this.element.addEventListener(`change`, (evt) => {
       if (evt.target.getAttribute(`name`) === `answer`) {
-        answerButton.disabled = !answersCheckbox.some((answer) => {
+        answerButton.disabled = !answersCheckboxs.some((answer) => {
           return answer.checked;
         });
       }
     });
 
     answerButton.addEventListener(`click`, (evt) => {
-      this.onAnswer(answersCheckbox);
+      this.onAnswer(answersCheckboxs);
 
       evt.preventDefault();
     });

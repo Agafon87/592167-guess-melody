@@ -29,7 +29,7 @@ export default class ModalConfirm extends AbstractView {
     });
 
     this.choseButtons = this._element.querySelectorAll(`.modal__button`);
-    for (let it of this.choseButtons) {
+    for (const it of this.choseButtons) {
       it.addEventListener(`click`, (evt) => {
         if (evt.target.textContent === `Ок`) {
           Router.showWelcome();

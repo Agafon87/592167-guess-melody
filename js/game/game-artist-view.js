@@ -40,10 +40,10 @@ export default class GameArtistView extends AbstractView {
 
 
   bind() {
-    const answersButton = [...this.element.querySelectorAll(`.artist__input`)];
+    const answersButtons = [...this.element.querySelectorAll(`.artist__input`)];
     this.element.addEventListener(`click`, (evt) => {
       if (evt.target.classList.contains(`artist__input`)) {
-        const answerIndex = answersButton.indexOf(evt.target);
+        const answerIndex = answersButtons.indexOf(evt.target);
         this.onAnswer(this.roundData.answers[answerIndex].isCorrect);
       }
     });

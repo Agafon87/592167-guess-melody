@@ -2,7 +2,7 @@ import {assert} from 'chai';
 import {getResultText} from './util';
 
 
-const anotherStat = [
+const anotherStats = [
   {
     "answers": [2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
     "time": 25,
@@ -27,6 +27,6 @@ const gameStat = {
 
 describe(`Проверка функции вывода места игрока в статистике`, () => {
   it(`Проверка, что правильно вычисляется процент в статистике`, () => {
-    assert.equal(getResultText(gameStat, anotherStat), `Вы заняли 9 место из 9 игроков. Это лучше, чем у 0% игроков`);
+    assert.equal(getResultText(gameStat, anotherStats), `Вы заняли 9 место из 9 игроков. Это лучше, чем у 0% игроков`);
   });
 });

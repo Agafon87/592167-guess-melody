@@ -1,4 +1,4 @@
-let sectionMain = document.querySelector(`section.main`);
+const sectionMain = document.querySelector(`section.main`);
 
 const changeScreenView = (view) => {
   sectionMain.innerHTML = ``;

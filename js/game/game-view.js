@@ -74,7 +74,7 @@ export default class GameView extends AbstractView {
 
   debugGenre(genre, debug) {
     const notes = this.element.querySelectorAll(`.game__answer > label`);
-    for (let it of notes) {
+    for (const it of notes) {
       if (it.dataset.genre === genre) {
         if (debug) {
           it.classList.add(`game__check__correct`);
@@ -87,7 +87,7 @@ export default class GameView extends AbstractView {
 
   debugArtist(debug) {
     const artistsImg = this.element.querySelectorAll(`.artist__name > img`);
-    for (let it of artistsImg) {
+    for (const it of artistsImg) {
       if (it.dataset.correct === `true` && debug) {
         it.classList.add(`artist__picture__correct`);
       } else {

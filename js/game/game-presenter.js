@@ -14,7 +14,7 @@ export default class GamePresenter {
 
   init(initialState) {
     window.onhashchange = () => {
-      debug = (location.hash.replace(`#`, ``) === `debug`) ? true : false;
+      debug = (location.hash.replace(`#`, ``) === `debug`);
       this.isDebug();
     };
     this.model.update(initialState);

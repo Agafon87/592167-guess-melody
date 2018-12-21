@@ -60,12 +60,17 @@ export default class GameModel {
 
   answerFromGenre(answer) {
     for (const it of answer) {
-      if (!it.checked && (this.questions[this.state.currentRound].answers[answer.indexOf(it)].genre === this.questions[this.state.currentRound].genre)) {
+      const temp = this.questions[this.state.currentRound].answers[answer.indexOf(it)].genre;
+      const temp2 = this.questions[this.state.currentRound].genre;
+      if (it.checked !== (temp === temp2)) {
         return false;
       }
-      if (it.checked && (this.questions[this.state.currentRound].answers[answer.indexOf(it)].genre !== this.questions[this.state.currentRound].genre)) {
-        return false;
-      }
+      // if (!it.checked && (this.questions[this.state.currentRound].answers[answer.indexOf(it)].genre === this.questions[this.state.currentRound].genre)) {
+      //   return false;
+      // }
+      // if (it.checked && (this.questions[this.state.currentRound].answers[answer.indexOf(it)].genre !== this.questions[this.state.currentRound].genre)) {
+      //   return false;
+      // }
     }
     return true;
   }

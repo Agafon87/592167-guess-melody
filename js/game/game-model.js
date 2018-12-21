@@ -65,12 +65,6 @@ export default class GameModel {
       if (it.checked !== (temp === temp2)) {
         return false;
       }
-      // if (!it.checked && (this.questions[this.state.currentRound].answers[answer.indexOf(it)].genre === this.questions[this.state.currentRound].genre)) {
-      //   return false;
-      // }
-      // if (it.checked && (this.questions[this.state.currentRound].answers[answer.indexOf(it)].genre !== this.questions[this.state.currentRound].genre)) {
-      //   return false;
-      // }
     }
     return true;
   }

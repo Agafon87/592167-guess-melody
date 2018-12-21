@@ -34,8 +34,9 @@ export default class Router {
     };
 
     const audios = getAudioUrls(questions);
-    audioPreloader.preloadAudios(audios);
-    Router.showWelcome();
+    audioPreloader.preloadAudios(audios).
+    then(() => Router.showWelcome()).
+    catch(Router.showModalError);
   }
 
   static showWelcome() {

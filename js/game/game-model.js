@@ -60,9 +60,9 @@ export default class GameModel {
 
   answerFromGenre(answer) {
     for (const it of answer) {
-      const temp = this.questions[this.state.currentRound].answers[answer.indexOf(it)].genre;
-      const temp2 = this.questions[this.state.currentRound].genre;
-      if (it.checked !== (temp === temp2)) {
+      const checkedAnswer = this.questions[this.state.currentRound].answers[answer.indexOf(it)].genre;
+      const correctAnswer = this.questions[this.state.currentRound].genre;
+      if (it.checked !== (checkedAnswer === correctAnswer)) {
         return false;
       }
     }
